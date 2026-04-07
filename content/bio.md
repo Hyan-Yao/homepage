@@ -1,5 +1,5 @@
-I am a PhD student at the School of Science, University of Example, advised by [Prof. Advisor One](https://example.com) and [Dr. Advisor Two](https://example.com).
+I am a first-year CS PhD student at the [School of Computing and Augmented Intelligence](https://scai.engineering.asu.edu/), Arizona State University, advised by [Prof. Hua Wei](https://labs.engineering.asu.edu/hw/) in the DaRL Lab.
 
-Prior to this, I obtained a BSc degree with First Class Honours in Natural Science from the University of Example.
+Prior to this, I was a research assistant at the [Institute of AI Industry Research, Tsinghua University](https://air.tsinghua.edu.cn/en/), and obtained my Bachelor's degree in Computer Science from [Xi'an Jiaotong University](http://en.xjtu.edu.cn/).
 
-My current research focuses on investigating the mathematical principles of natural philosophy.
+I am broadly interested in building AI systems that can continuously learn like humans and be effectively deployed in real-world environments.

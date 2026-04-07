@@ -1,7 +1,43 @@
 [[news]]
-date = "2025-11"
-content = "Our work has been accepted by a prestigious journal 🎉"
+date = "2026-04"
+content = "Our work *Every Response Counts: Quantifying Uncertainty of LLM-based Multi-Agent Systems through Tensor Decomposition* has been **accepted** by **ACL 2026 Main Conference**! 🎉"
+
+[[news]]
+date = "2026-03"
+content = "New preprint released: *LangMARL: Natural Language Multi-Agent Reinforcement Learning*."
+
+[[news]]
+date = "2026-02"
+content = "Our work *How Effective is In-Context Learning with Large Language Models for Rare Cell Identification in Single-Cell Expression Data?* has been accepted by **ICDM 2026**!"
+
+[[news]]
+date = "2026-01"
+content = "New paper released: *RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation*."
+
+[[news]]
+date = "2025-12"
+content = "Our paper *From Course Concept to Lecture Video: An AI-Powered System for Automated MOOC Development* has been accepted by **LERN 2026**!"
+
+[[news]]
+date = "2025-12"
+content = "Our paper *Instructional Agents: LLM Agents on Automated Course Material Generation for Teaching Faculties* has been accepted by **EACL 2026 Main Conference**!"
 
 [[news]]
 date = "2025-09"
-content = "Starting my PhD at the University of Example"
+content = "Happy to share that I've **joined** **ASU** as a first-year **PhD student** at the **DaRL Lab**! 🚀 Looking forward to an amazing journey with my advisor **Prof. Hua Wei**!"
+
+[[news]]
+date = "2025-06"
+content = "New preprint released: *Lilodriver: A lifelong learning framework for closed-loop motion planning in long-tail autonomous driving scenarios*."
+
+[[news]]
+date = "2025-05"
+content = "New paper released: *Autonomous multi-modal llm agents for treatment planning in focused ultrasound ablation surgery*."
+
+[[news]]
+date = "2025-03"
+content = "New survey released: *Generative AI in transportation planning: A survey*."
+
+[[news]]
+date = "2025-01"
+content = "Our paper *CoMAL: Collaborative multi-agent large language models for mixed-autonomy traffic* has been accepted by **SDM 2025** and the **CIKM 2024 Agent4IR Workshop**!"

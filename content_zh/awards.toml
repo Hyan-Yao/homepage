@@ -3,25 +3,15 @@ title = "奖项"
 description = "我获得的荣誉与奖项。"
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2025"
-content = "奖项说明。"
+title = "校级研究生奖学金"
+subtitle = "亚利桑那州立大学"
+date = "2026 春季"
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2024"
-content = "奖项说明。"
+title = "全球安全倡议（GSI）奖学金"
+subtitle = "亚利桑那州立大学"
+date = "2025 秋季"
 
 [[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
+title = "美国大学生数学建模竞赛 Finalist Prize"
 date = "2023"
-content = "奖项说明。"
-
-[[items]]
-title = "示例奖项"
-subtitle = "颁发机构"
-date = "2022"
-content = "奖项说明。"

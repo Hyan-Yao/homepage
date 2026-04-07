@@ -4,6 +4,42 @@ description = "专业服务与社区参与。"
 
 [[items]]
 title = "审稿人"
-subtitle = "某期刊"
-date = "2024"
-content = "参与审阅论文。"
+subtitle = "ICMLA 2026, PAKDD 2026, ECML-PKDD 2026, RLC 2026, IROS 2026"
+date = "2026"
+content = "担任国际机器学习与应用会议（ICMLA）、太平洋-亚洲知识发现与数据挖掘会议（PAKDD）、欧洲机器学习与知识发现会议（ECML-PKDD）、强化学习会议（RLC）以及IEEE/RSJ智能机器人与系统国际会议（IROS）的审稿人。"
+
+[[items]]
+title = "志愿者"
+subtitle = "第四届中国三维视觉大会（China3DV 2025）"
+date = "2025年4月"
+content = ""
+
+[[items]]
+title = "创始人"
+subtitle = "神经建模与编程工作坊"
+date = "2024年2月 -- 2024年8月"
+content = "**工作坊创始人**，汇集了来自不同专业和高校的数百名本科生、硕士生和博士生，共同探索神经建模，由 Swarm Club 协助支持。\n\n- 神经元与突触模型：Hodgkin-Huxley 模型、LIF/AdEx 模型、突触可塑性\n- 神经网络：E-I 平衡网络、决策网络、吸引子网络、储备池网络等"
+
+[[items]]
+title = "创始人"
+subtitle = "Lanmily 语言社区"
+date = "2023 -- 2025"
+content = "Lanmily（即 Language Family），一个由学生发起的社区，汇集了数百名国际学生和中国学生，通过语言学习促进跨文化交流。社团推动中文、英语、西班牙语等多语言的互学互动。"
+
+[[items]]
+title = "导演"
+subtitle = "原创校园音乐剧《白帆文学社》"
+date = "2023 -- 2025"
+content = "导演创作并搬演了一部原创校园音乐剧，以书信与文学为线索，讲述了交织着青春、爱情与自我发现的故事。作品探讨了孤独、身份认同与情感成长等主题，为校园生活提供了一种诗意的表达。负责全流程创作，包括剧本编写、演员选拔和舞台导演。"
+
+[[items]]
+title = "摄影师"
+subtitle = "西安交通大学学生电视台"
+date = "2021 -- 2022"
+content = ""
+
+[[items]]
+title = "急救志愿者"
+subtitle = "西安市红十字会"
+date = "2021 -- 2023"
+content = ""

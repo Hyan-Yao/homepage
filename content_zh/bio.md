@@ -1,5 +1,5 @@
-我目前是某某大学理学院博士生，导师是 [导师甲教授](https://example.com) 和 [导师乙博士](https://example.com)。
+我目前是[亚利桑那州立大学](https://scai.engineering.asu.edu/)计算与增强智能学院一年级博士生，导师是 [魏华教授](https://labs.engineering.asu.edu/hw/)（DaRL Lab）。
 
-此前，我在某某大学获得自然科学学士学位（一等荣誉）。
+此前，我在[清华大学智能产业研究院](https://air.tsinghua.edu.cn/)担任研究助理，并在[西安交通大学](http://www.xjtu.edu.cn/)获得计算机科学学士学位。
 
-我的研究主要关注自然哲学中的数学原理。
+我的研究兴趣是构建能够像人类一样持续学习、并在现实环境中有效部署的 AI 系统。

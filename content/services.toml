@@ -4,6 +4,42 @@ description = "Professional services and community involvement."
 
 [[items]]
 title = "Reviewer"
-subtitle = "Journal Name"
-date = "2024"
-content = "Reviewed papers for..."
+subtitle = "ICMLA 2026, PAKDD 2026, ECML-PKDD 2026, RLC 2026, IROS 2026"
+date = "2026"
+content = "Reviewer for the International Conference on Machine Learning and Applications (ICMLA), the Pacific-Asia Conference on Knowledge Discovery and Data Mining (PAKDD), the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), the Reinforcement Learning Conference (RLC), and the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)."
+
+[[items]]
+title = "Volunteer"
+subtitle = "4th China 3D Vision Conference (China3DV 2025)"
+date = "Apr 2025"
+content = ""
+
+[[items]]
+title = "Founder"
+subtitle = "Neural Modeling and Programming Workshop"
+date = "Feb 2024 -- Aug 2024"
+content = "**The founder of the workshop** with hundreds of undergraduates, masters and PhDs from various majors and universities who have interest in neural modeling, with the help of Swarm Club.\n\n- Neuron and Synapse Models: Hodgkin-Huxley Model, LIF/AdEx Model, Synapse Plasticity\n- Neural Network: E-I Balanced Network, Decision Network, Attractor Network, Reservoir Network, etc."
+
+[[items]]
+title = "Founder"
+subtitle = "Lanmily Language Community"
+date = "2023 -- 2025"
+content = "Lanmily, *i.e. Language Family*, a student-led community bringing together hundreds of international and Chinese students to foster cross-cultural exchange through language learning. The club promotes mutual learning and interaction in languages such as Chinese, English, Spanish, and more."
+
+[[items]]
+title = "Director"
+subtitle = "Original Campus Musical *White Sail Literature Society*"
+date = "2023 -- 2025"
+content = "Directed the creation and staging of an original campus musical with the White Sail Literature Society, portraying intertwined stories of youth, love, and self-discovery through letters and literature. The production explored themes such as loneliness, identity, and emotional growth, offering a poetic reflection on student life. Oversaw the full creative process, including scriptwriting, casting, and stage direction."
+
+[[items]]
+title = "Photographer"
+subtitle = "Student TV, Xi'an Jiaotong University"
+date = "2021 -- 2022"
+content = ""
+
+[[items]]
+title = "First Aid Volunteer"
+subtitle = "Red Cross Society of Xi'an"
+date = "2021 -- 2023"
+content = ""

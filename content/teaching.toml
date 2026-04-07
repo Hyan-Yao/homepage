@@ -3,8 +3,13 @@ title = "Teaching"
 description = "Courses I have taught or assisted with."
 
 [[items]]
-title = "Example Course"
+title = "CSE 220: Programming for Computer Engr"
 subtitle = "Teaching Assistant"
-date = "2024"
-content = "Description of the course and responsibilities. Content of this course can be found [here](https://example.com)."
-tags = ["Undergraduate", "CS"]
+date = "2026 Spring C"
+content = "Working with Prof. Adwith Malpe."
+
+[[items]]
+title = "CSE 475: Foundation of Machine Learning"
+subtitle = "Teaching Assistant"
+date = "2025 Fall C"
+content = "Working with Prof. Robert K. Atkinson."

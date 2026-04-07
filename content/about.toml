@@ -3,9 +3,10 @@ title = "About"
 
 [profile]
 research_interests = [
-  "Computational Physics",
-  "Mathematical Principles",
-  "Proof of Theorems"
+  "Multi-Agent Reinforcement Learning",
+  "LLM Agents",
+  "Continual Learning",
+  "Autonomous Driving"
 ]
 
 [[sections]]
