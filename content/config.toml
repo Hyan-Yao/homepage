@@ -22,8 +22,8 @@ location_details = [
 ]
 google_scholar = "https://scholar.google.com/citations?user=hFRDeywAAAAJ"
 orcid = ""
-github = "https://github.com"
-linkedin = "https://linkedin.com"
+github = "https://github.com/Hyan-Yao"
+linkedin = "https://www.linkedin.com/in/huaiyuan-yao-01510b381/"
 
 [features]
 # Show a like button on the about page
@@ -34,7 +34,7 @@ enable_one_page_mode = false
 
 [i18n]
 enabled = true
-locales = ["zh", "en"]
+locales = ["en"] # Add "zh" after Chinese content is ready.
 default_locale = "en"
 # "auto" means the locale will be determined by the browser's language setting, "fixed" means the locale will be fixed to the default locale (but can be switched still, if you want to disable, set "enable=false")
 mode = "auto"

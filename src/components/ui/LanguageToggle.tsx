@@ -20,7 +20,7 @@ export default function LanguageToggle({ i18n }: LanguageToggleProps) {
     setMounted(true);
   }, []);
 
-  if (!i18n.enabled || !i18n.switcher || i18n.locales.length <= 1) {
+  if (!i18n.enabled || !i18n.switcher) {
     return null;
   }
 
