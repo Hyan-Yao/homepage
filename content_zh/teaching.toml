@@ -1,6 +1,7 @@
 type = "card"
 title = "教学"
 description = "我曾参与授课或助教的课程。"
+footer_source = "teaching_footer.md"
 
 [[items]]
 title = "CSE 220: Programming for Computer Engr"

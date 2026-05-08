@@ -6,6 +6,8 @@ import { CardPageConfig } from '@/types/page';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
+    h2: ({ children }: React.ComponentProps<'h2'>) => <h2 className="text-2xl font-serif font-semibold text-primary mt-2 mb-3">{children}</h2>,
+    h3: ({ children }: React.ComponentProps<'h3'>) => <h3 className="text-xl font-serif font-semibold text-primary mt-2 mb-3">{children}</h3>,
     ul: ({ children }: React.ComponentProps<'ul'>) => <ul className="list-disc list-inside mb-3 space-y-1">{children}</ul>,
     ol: ({ children }: React.ComponentProps<'ol'>) => <ol className="list-decimal list-inside mb-3 space-y-1">{children}</ol>,
     li: ({ children }: React.ComponentProps<'li'>) => <li className="mb-1">{children}</li>,
@@ -86,6 +88,19 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                     </motion.div>
                 ))}
             </div>
+
+            {config.footer && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className={`${embedded ? "mt-6 text-sm" : "mt-10 text-base"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}
+                >
+                    <ReactMarkdown components={markdownComponents}>
+                        {config.footer}
+                    </ReactMarkdown>
+                </motion.div>
+            )}
         </motion.div>
     );
 }

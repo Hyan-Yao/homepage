@@ -1,6 +1,7 @@
 type = "card"
 title = "Teaching"
 description = "Courses I have taught or assisted with."
+footer_source = "teaching_footer.md"
 
 [[items]]
 title = "CSE 220: Programming for Computer Engr"

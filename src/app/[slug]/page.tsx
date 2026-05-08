@@ -41,9 +41,13 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
   }
 
   if (pageConfig.type === 'card') {
+    const cardConfig = pageConfig as CardPageConfig;
+    if (cardConfig.footer_source) {
+      cardConfig.footer = getMarkdownContent(cardConfig.footer_source, locale);
+    }
     return {
       type: 'card',
-      config: pageConfig as CardPageConfig,
+      config: cardConfig,
     };
   }
 
