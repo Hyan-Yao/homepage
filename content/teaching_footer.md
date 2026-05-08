@@ -1,4 +1,4 @@
-### Mentorship
+### Mentorship & Collaboration
 
 I've had the privilege of collaborating with a wonderful group of brilliant undergraduate and master's students:
 
@@ -9,4 +9,4 @@ I've had the privilege of collaborating with a wonderful group of brilliant unde
 - **Siyuan Xing**: Undergraduate, Arizona State University
 - **Yuxuan Huang**: Master's, Arizona State University
 
-If you're interested in working together, feel free to reach out. Let's build something interesting!
+Research isn’t just about advancing your own work, it’s also about supporting and learning from one another along the way. If you're interested in working together, feel free to reach out. Let's build something interesting!
