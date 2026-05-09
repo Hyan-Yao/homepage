@@ -1,4 +1,12 @@
 [[news]]
+date = "2026-05"
+content = "Thrilled to receive an offer from **Honda Research Institute**! See you in Mountain View, CA! 🚗"
+
+[[news]]
+date = "2026-05"
+content = "Honored to be accepted to **AI-SCORE 2026** at **UIUC**, exploring the synergy between Operations Research (OR) and Computer Science (CS) communities. See you in Chicago! 🌆"
+
+[[news]]
 date = "2026-04"
 content = "Our work *Every Response Counts: Quantifying Uncertainty of LLM-based Multi-Agent Systems through Tensor Decomposition* has been accepted by **ACL 2026 Main Conference**! 🎉"
 
