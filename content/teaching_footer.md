@@ -7,7 +7,7 @@ I've had the privilege of collaborating with a wonderful group of brilliant unde
 - **Qingyue Chen**: Undergraduate, Wuhan University
 - **Ziqi Wang**: Master's, Computer Science, Rutgers University
 - **Siyuan Xing**: Undergraduate, Arizona State University
-- **Yuxuan Huang**: Master's, Arizona State Universitys
+- **Yuxuan Huang**: Master's, Arizona State University
 - **Xiwei Ni**: Master's, Xi'an Jiaotong University
 
 **Research is NOT just about advancing your own work, it’s also about supporting and learning from one another along the way.** If you're interested in working together, feel free to reach out. Let's build something interesting!
