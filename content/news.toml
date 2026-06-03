@@ -1,5 +1,9 @@
 [[news]]
 date = "2026-05"
+content = "Glad to receive University Graduate Fellowship (UGF) for Summer 2026!"
+
+[[news]]
+date = "2026-05"
 content = "Thrilled to receive a Research Intern offer from **Honda Research Institute**! See you in Mountain View, CA! 🚗"
 
 [[news]]
@@ -13,6 +17,10 @@ content = "Our work *Every Response Counts: Quantifying Uncertainty of LLM-based
 [[news]]
 date = "2026-03"
 content = "New preprint released: *LangMARL: Natural Language Multi-Agent Reinforcement Learning*."
+
+[[news]]
+date = "2026-02"
+content = "Glad to receive University Graduate Fellowship (UGF) for Spring 2026!"
 
 [[news]]
 date = "2026-02"
