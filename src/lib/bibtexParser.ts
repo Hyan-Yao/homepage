@@ -84,13 +84,17 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
       doi: tags.doi,
       url: tags.url,
       code: tags.code,
+      arxiv: normalizeArxiv(tags.arxiv),
+      projectPage: tags.page || tags.projectpage,
+      blog: tags.blog,
+      pdfUrl: tags.pdf,
       abstract: cleanBibTeXString(tags.abstract),
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
       preview,
 
-      // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code']),
+      // Store original BibTeX (excluding custom/display-only fields)
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'arxiv', 'page', 'projectpage', 'blog', 'pdf']),
     };
 
     // Clean up undefined fields
@@ -225,6 +229,15 @@ function parseAuthors(authorsStr: string, highlightNames: string[]): Array<{ nam
       };
     })
     .filter(author => author.name);
+}
+
+// Accept either a bare arXiv id ("2604.00722") or a full URL, return a canonical abs URL.
+function normalizeArxiv(value?: string): string | undefined {
+  if (!value) return undefined;
+  const cleaned = value.replace(/[{}]/g, '').trim();
+  if (!cleaned) return undefined;
+  if (/^https?:\/\//i.test(cleaned)) return cleaned;
+  return `https://arxiv.org/abs/${cleaned}`;
 }
 
 function cleanBibTeXString(str?: string): string {

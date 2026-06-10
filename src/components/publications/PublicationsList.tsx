@@ -3,14 +3,23 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
     MagnifyingGlassIcon,
     FunnelIcon,
     CalendarIcon,
     BookOpenIcon,
     ClipboardDocumentIcon,
-    DocumentTextIcon
+    DocumentTextIcon,
+    DocumentArrowDownIcon,
+    CodeBracketIcon,
+    GlobeAltIcon,
+    PencilSquareIcon
 } from '@heroicons/react/24/outline';
+
+// Shared styling for the small link/action chips under each publication.
+const linkChipClass =
+    'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors';
 import { Publication } from '@/types/publication';
 import { PublicationPageConfig } from '@/types/page';
 import { cn } from '@/lib/utils';
@@ -240,12 +249,34 @@ export default function PublicationsList({ config, publications, embedded = fals
                                     )}
 
                                     <div className="flex flex-wrap gap-2 mt-auto">
+                                        {pub.arxiv && (
+                                            <a
+                                                href={pub.arxiv}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={linkChipClass}
+                                            >
+                                                <DocumentArrowDownIcon className="h-3 w-3 mr-1.5" />
+                                                arXiv
+                                            </a>
+                                        )}
+                                        {pub.url && !/arxiv\.org/i.test(pub.url) && (
+                                            <a
+                                                href={pub.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={linkChipClass}
+                                            >
+                                                <DocumentTextIcon className="h-3 w-3 mr-1.5" />
+                                                Paper
+                                            </a>
+                                        )}
                                         {pub.doi && (
                                             <a
                                                 href={`https://doi.org/${pub.doi}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                                className={linkChipClass}
                                             >
                                                 DOI
                                             </a>
@@ -255,10 +286,32 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                 href={pub.code}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                                className={linkChipClass}
                                             >
+                                                <CodeBracketIcon className="h-3 w-3 mr-1.5" />
                                                 {messages.publications.code}
                                             </a>
+                                        )}
+                                        {pub.projectPage && (
+                                            <a
+                                                href={pub.projectPage}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={linkChipClass}
+                                            >
+                                                <GlobeAltIcon className="h-3 w-3 mr-1.5" />
+                                                Project Page
+                                            </a>
+                                        )}
+                                        {pub.blog && (
+                                            <Link
+                                                href={pub.blog}
+                                                prefetch={true}
+                                                className={linkChipClass}
+                                            >
+                                                <PencilSquareIcon className="h-3 w-3 mr-1.5" />
+                                                Blog
+                                            </Link>
                                         )}
                                         {pub.abstract && (
                                             <button

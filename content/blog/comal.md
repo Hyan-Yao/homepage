@@ -44,3 +44,7 @@ A few headline findings:
 CoMAL is, to our knowledge, the first framework to put the *collaborative* capability of multi-agent LLMs to work in autonomous driving. It trades the data-hunger and opacity of RL for the generalization and interpretability of language-based reasoning — you can literally read the agents' negotiation. The natural next steps: scale to many more agents to see whether emergent cooperative behaviors appear, and combine LLMs with RL to get the best of exploration and common-sense reasoning.
 
 Code is available at [github.com/Hyan-Yao/CoMAL](https://github.com/Hyan-Yao/CoMAL).
+
+---
+
+**Links:** [Paper (SDM 2025)](https://epubs.siam.org/doi/10.1137/1.9781611978520.43) · [Code](https://github.com/Hyan-Yao/CoMAL) · [All publications](/publications)

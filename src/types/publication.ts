@@ -24,9 +24,12 @@ export interface Publication {
   publishedDate?: string;
   doi?: string;
   arxivId?: string;
+  arxiv?: string;
   pmid?: string;
   url?: string;
   code?: string;
+  projectPage?: string;
+  blog?: string;
   pdfUrl?: string;
   tags: string[];
   keywords?: string[];

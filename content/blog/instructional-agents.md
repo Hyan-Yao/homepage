@@ -55,3 +55,7 @@ The cost side is striking: a full course package runs on the order of **$0.22–
 The point isn't to take instructors out of the loop — it's to lower the barrier to *good* course design for the institutions that need it most. Community colleges, international programs, and under-resourced departments rarely have dedicated instructional-design staff. A system that drafts a coherent, rubric-aligned course package for under a dollar, then hands it to faculty for review and refinement, is a step toward more equitable access to high-quality education.
 
 The project website and source code are available at [darl-genai.github.io/instructional_agents_homepage](https://darl-genai.github.io/instructional_agents_homepage/).
+
+---
+
+**Links:** [Project page](https://darl-genai.github.io/instructional_agents_homepage/) · [All publications](/publications) — accepted at EACL 2026.
