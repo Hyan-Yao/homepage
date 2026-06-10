@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
     MagnifyingGlassIcon,
@@ -16,6 +15,12 @@ import {
     GlobeAltIcon,
     PencilSquareIcon
 } from '@heroicons/react/24/outline';
+
+// Prefix root-absolute asset paths with the deployment base path (e.g. "/homepage").
+// next/link applies this automatically, but plain <img>/asset URLs do not.
+function withBasePath(src: string): string {
+    return src.startsWith('/') ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${src}` : src;
+}
 
 // Shared styling for the small link/action chips under each publication.
 const linkChipClass =
@@ -208,20 +213,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                             className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200"
                         >
                             <div className="flex flex-col md:flex-row gap-6">
-                                {pub.preview && (
-                                    <div className="w-full md:w-48 flex-shrink-0">
-                                        <div className="aspect-video md:aspect-[4/3] relative rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-                                            <Image
-                                                src={`/papers/${pub.preview}`}
-                                                alt={pub.title}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                            />
-                                        </div>
-                                    </div>
-                                )}
-                                <div className="flex-grow">
+                                <div className="flex-grow order-2 md:order-1 min-w-0">
                                     <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-2 leading-tight`}>
                                         {pub.title}
                                     </h3>
@@ -386,6 +378,17 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         ) : null}
                                     </AnimatePresence>
                                 </div>
+                                {pub.preview && (
+                                    <div className="w-full md:w-60 lg:w-72 flex-shrink-0 order-1 md:order-2 self-start">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={withBasePath(`/papers/${pub.preview}`)}
+                                            alt={pub.title}
+                                            loading="lazy"
+                                            className="w-full h-auto max-h-64 object-contain rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 p-2"
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     ))
