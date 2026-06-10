@@ -49,6 +49,23 @@ export default function TextPage({ config, content, embedded = false }: TextPage
                         ),
                         strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
                         em: ({ children }) => <em className="italic text-neutral-600 dark:text-neutral-500">{children}</em>,
+                        hr: () => <hr className="my-10 border-neutral-200 dark:border-neutral-800" />,
+                        img: ({ src, alt }) => (
+                            <span className="block my-6">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={typeof src === 'string' ? src : ''}
+                                    alt={alt ?? ''}
+                                    loading="lazy"
+                                    className="w-full h-auto rounded-lg border border-neutral-200 dark:border-neutral-800 shadow-sm"
+                                />
+                                {alt && (
+                                    <span className="block text-sm text-center text-neutral-500 dark:text-neutral-500 mt-2">
+                                        {alt}
+                                    </span>
+                                )}
+                            </span>
+                        ),
                     }}
                 >
                     {content}
