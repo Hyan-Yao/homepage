@@ -22,6 +22,9 @@ export interface CardItem {
     tags?: string[];
     link?: string;
     image?: string;
+    // Internal route to navigate to when the whole card is clicked (e.g. "/blog/comal").
+    // Handled via next/link so the deployment base path is applied automatically.
+    href?: string;
 }
 
 export interface CardPageConfig extends BasePageConfig {

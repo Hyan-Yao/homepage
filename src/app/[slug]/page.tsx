@@ -57,7 +57,8 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
 export function generateStaticParams() {
   const config = getConfig();
   return config.navigation
-    .filter((nav) => nav.type === 'page' && nav.target !== 'about')
+    // 'about' is the home page; 'blog' has its own dedicated route at app/blog.
+    .filter((nav) => nav.type === 'page' && nav.target !== 'about' && nav.target !== 'blog')
     .map((nav) => ({
       slug: nav.target,
     }));

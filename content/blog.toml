@@ -1,3 +1,19 @@
-type = "text"
+type = "card"
 title = "Blog"
-source = "blog.md"
+description = "Write-ups on recent work from our group on multi-agent large language models."
+
+[[items]]
+title = "CoMAL: Can LLM Agents Talk Their Way Out of a Traffic Jam?"
+subtitle = "Multi-agent LLMs for mixed-autonomy traffic"
+date = "2026"
+href = "/blog/comal"
+content = "A handful of well-behaved autonomous vehicles can smooth out stop-and-go waves for everyone. CoMAL builds each vehicle as an LLM agent that perceives the road, negotiates roles in a shared message pool, and drives through a rule-based controller — beating human drivers and rivaling reinforcement learning, while staying interpretable."
+tags = ["LLM Agents", "Autonomous Driving", "Multi-Agent", "Reinforcement Learning"]
+
+[[items]]
+title = "Instructional Agents: A Faculty Meeting Inside an LLM"
+subtitle = "Multi-agent LLMs for automated course design"
+date = "2026"
+href = "/blog/instructional-agents"
+content = "Preparing a coherent course — objectives, syllabus, slides, scripts, assessments — usually takes a whole team. Instructional Agents simulates that team with role-specialized LLM agents working through the ADDIE framework, producing classroom-ready material for under a dollar, with a dial for how much human oversight you want."
+tags = ["LLM Agents", "Education", "Multi-Agent", "AI for Education"]

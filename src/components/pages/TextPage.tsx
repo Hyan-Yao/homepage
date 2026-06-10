@@ -4,6 +4,15 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { TextPageConfig } from '@/types/page';
 
+// Prefix root-absolute asset paths with the deployment base path (e.g. "/homepage"),
+// matching how next/link and the favicon/avatar handle it. External URLs are left as-is.
+function withBasePath(src: string): string {
+    if (src.startsWith('/')) {
+        return `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${src}`;
+    }
+    return src;
+}
+
 interface TextPageProps {
     config: TextPageConfig;
     content: string;
@@ -54,7 +63,7 @@ export default function TextPage({ config, content, embedded = false }: TextPage
                             <span className="block my-6">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src={typeof src === 'string' ? src : ''}
+                                    src={withBasePath(typeof src === 'string' ? src : '')}
                                     alt={alt ?? ''}
                                     loading="lazy"
                                     className="w-full h-auto rounded-lg border border-neutral-200 dark:border-neutral-800 shadow-sm"
