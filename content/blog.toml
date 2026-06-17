@@ -3,6 +3,22 @@ title = "Blog"
 description = "Write-ups on recent work from our group on multi-agent large language models."
 
 [[items]]
+title = "AURORA: Teaching LLM Agents When to Hit Undo"
+subtitle = "Attention-based dual verification for reliable rollback"
+date = "2026"
+href = "/blog/aurora"
+content = "When an LLM agent takes a wrong step on a long task, the fix is to roll back — but knowing when is the hard part. AURORA reads attention patterns over the agent's trajectory to produce two signals, physical validity and overall coherence, and triggers a rollback only when one of them fires — recovering more tasks with fewer interventions."
+tags = ["LLM Agents", "Embodied AI", "Verification", "Reasoning"]
+
+[[items]]
+title = "LangMARL: Giving Each LLM Agent Its Own Performance Review"
+subtitle = "Credit assignment for teams of LLM agents"
+date = "2026"
+href = "/blog/langmarl"
+content = "When a team of LLM agents fails, who should change what? LangMARL ports credit assignment from multi-agent reinforcement learning into language space: a centralized critic reads the whole episode and writes agent-specific feedback, driving a language-form actor–critic loop that improves coordination, scales to large teams, and grows complementary roles nobody assigned."
+tags = ["LLM Agents", "Multi-Agent", "Reinforcement Learning", "Credit Assignment"]
+
+[[items]]
 title = "CoMAL: Can LLM Agents Talk Their Way Out of a Traffic Jam?"
 subtitle = "Multi-agent LLMs for mixed-autonomy traffic"
 date = "2026"
