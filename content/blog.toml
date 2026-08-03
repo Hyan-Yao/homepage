@@ -1,6 +1,22 @@
 type = "card"
 title = "Blog"
-description = "Write-ups on recent work from our group on multi-agent large language models."
+description = "Write-ups on recent work from our group on multi-agent large language models, and read-throughs of papers we found worth the time."
+
+[[items]]
+title = "Kimi K3: Scaling Both Axes at Once"
+subtitle = "Paper read-through — a 2.8T open MoE with a 1M-token context"
+date = "2026"
+href = "/blog/kimi-k3"
+content = "Open models have been scaling test-time compute while their pre-trained foundations sat still. Kimi K3 pushes both at once: 2.8T parameters, native vision, and a million-token context window. The architecture is elegant — linear attention with a bounded decay gate, attention over depth, 896 experts balanced by quantile matching — but the real story is the infrastructure that makes million-token agentic RL affordable."
+tags = ["Paper Reading", "LLM", "Mixture-of-Experts", "Long Context", "Systems"]
+
+[[items]]
+title = "DeepSeek-V4: Making a Million Tokens Affordable"
+subtitle = "Paper read-through — compressing and sparsifying attention to the frontier"
+date = "2026"
+href = "/blog/deepseek-v4"
+content = "Test-time scaling runs straight into attention's quadratic cost. DeepSeek-V4 interleaves two new attention mechanisms — one that compresses then sparsifies, one that compresses far harder but stays dense — to serve a million-token context at 27% of the FLOPs and 10% of the KV cache of its predecessor, plus an unusually honest account of the loss spikes along the way."
+tags = ["Paper Reading", "LLM", "Attention", "Long Context", "Efficiency"]
 
 [[items]]
 title = "AURORA: Teaching LLM Agents When to Hit Undo"

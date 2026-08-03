@@ -1,3 +1,51 @@
-type = "text"
+type = "card"
 title = "博客"
-source = "blog.md"
+description = "本组在多智能体大语言模型方向上的近期工作札记，以及一些值得花时间精读的论文。"
+
+[[items]]
+title = "Kimi K3：两个轴一起推"
+subtitle = "论文精读 —— 一个 2.8T、百万 token 上下文的开源 MoE"
+date = "2026"
+href = "/blog/kimi-k3"
+content = "开源模型一直在扩展测试时计算，底下的预训练基座却停在原地。Kimi K3 选择同时推进两者：2.8 万亿参数、原生视觉、百万 token 上下文。架构上的想法很优雅——给衰减门加下界的线性注意力、在深度维上做注意力、用分位点匹配平衡 896 个专家——但真正的故事是那套让百万 token 智能体 RL 变得可负担的基础设施。"
+tags = ["论文精读", "大语言模型", "混合专家", "长上下文", "系统"]
+
+[[items]]
+title = "DeepSeek-V4：让一百万 token 变得便宜"
+subtitle = "论文精读 —— 把注意力压缩并稀疏化到前沿"
+date = "2026"
+href = "/blog/deepseek-v4"
+content = "测试时扩展会直接撞上注意力的二次方开销。DeepSeek-V4 交替堆叠两种新注意力——一种先压缩再稀疏，另一种压得狠得多但保持稠密——用上一代 27% 的 FLOPs 和 10% 的 KV cache 支撑起百万 token 上下文，还附带了一份对训练 loss 尖峰异常坦诚的记录。"
+tags = ["论文精读", "大语言模型", "注意力机制", "长上下文", "效率"]
+
+[[items]]
+title = "AURORA：教会 LLM 智能体何时按下撤销"
+subtitle = "面向可靠回滚的注意力双重验证"
+date = "2026"
+href = "/blog/aurora"
+content = "当 LLM 智能体在长任务中走错一步，修复办法是回滚——但难点在于判断何时回滚。AURORA 读取智能体轨迹上的注意力模式，产生物理有效性与整体一致性两个信号，只在其中之一报警时才触发回滚——用更少的干预恢复了更多任务。"
+tags = ["LLM 智能体", "具身智能", "验证", "推理"]
+
+[[items]]
+title = "LangMARL：给每个 LLM 智能体单独的绩效评估"
+subtitle = "面向 LLM 智能体团队的信用分配"
+date = "2026"
+href = "/blog/langmarl"
+content = "当一队 LLM 智能体失败时，谁该改变什么？LangMARL 把多智能体强化学习中的信用分配搬进语言空间：一个中心化的评论者读完整段轨迹，为每个智能体写出针对性的反馈，驱动一个语言形式的 actor–critic 循环，改善协作、扩展到大团队，并长出无人指派的互补角色。"
+tags = ["LLM 智能体", "多智能体", "强化学习", "信用分配"]
+
+[[items]]
+title = "CoMAL：LLM 智能体能靠交流开出堵车吗？"
+subtitle = "面向混合自动驾驶交通的多智能体 LLM"
+date = "2026"
+href = "/blog/comal"
+content = "少量行为良好的自动驾驶车辆就能为所有人抚平走走停停的交通波。CoMAL 把每辆车构建成一个 LLM 智能体：感知路况、在共享消息池中协商角色、再通过基于规则的控制器驾驶——既胜过人类驾驶员、可与强化学习匹敌，又保持可解释。"
+tags = ["LLM 智能体", "自动驾驶", "多智能体", "强化学习"]
+
+[[items]]
+title = "Instructional Agents：LLM 内部的一场教研会"
+subtitle = "面向自动化课程设计的多智能体 LLM"
+date = "2026"
+href = "/blog/instructional-agents"
+content = "准备一门连贯的课程——教学目标、教学大纲、幻灯片、讲稿、测评——通常需要一整个团队。Instructional Agents 用角色分工的 LLM 智能体沿 ADDIE 框架模拟这个团队，以不到一美元的成本产出可直接进课堂的材料，并提供一个调节人类介入程度的旋钮。"
+tags = ["LLM 智能体", "教育", "多智能体", "AI 教育应用"]

@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Human Rating Reliability — Preliminary Experiment Analysis</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --surface-1:#fcfcfb; --plane:#f9f9f7;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --seq-100:#cde2fb; --seq-200:#9ec5f4; --seq-250:#86b6ef; --seq-300:#6da7ec;
+  --seq-400:#3987e5; --seq-450:#2a78d6; --seq-500:#256abf; --seq-550:#1c5cab; --seq-650:#104281;
+  --neutral-mid:#f0efec;
+  --shadow:0 1px 2px rgba(11,11,11,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70;
+    --neutral-mid:#383835;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --surface-1:#1a1a19; --plane:#0d0d0d;
+  --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70;
+  --neutral-mid:#383835; --shadow:none;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--plane); color:var(--text-primary);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 96px}
+header.page{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px}
+h1{font-size:30px;line-height:1.2;margin:0 0 8px;letter-spacing:-.02em}
+.sub{color:var(--text-secondary);margin:0;font-size:15px}
+.meta{color:var(--muted);font-size:13px;margin-top:12px}
+h2{font-size:21px;margin:56px 0 6px;letter-spacing:-.01em;scroll-margin-top:20px}
+h2 .num{color:var(--muted);font-weight:400;margin-right:10px}
+h3{font-size:16px;margin:28px 0 8px}
+h4{font-size:14px;margin:20px 0 6px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.06em}
+p{margin:10px 0}
+.lede{color:var(--text-secondary);margin:0 0 4px}
+a{color:var(--series-1)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--neutral-mid);padding:1px 5px;border-radius:4px}
+
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin:20px 0;box-shadow:var(--shadow)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0}
+.tile{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow)}
+.tile .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.tile .value{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.tile .note{font-size:12.5px;color:var(--text-secondary);margin-top:5px}
+
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid var(--border);white-space:nowrap}
+.chip.good{color:var(--good)} .chip.warn{color:#8a6200} .chip.bad{color:var(--critical)} .chip.info{color:var(--text-secondary)}
+@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .chip.warn{color:var(--warning)}}
+:root[data-theme="dark"] .chip.warn{color:var(--warning)}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+th{text-align:left;font-weight:600;color:var(--text-secondary);font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--axis);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--grid);white-space:nowrap}
+td.num,th.num{text-align:right}
+tbody tr:hover{background:var(--neutral-mid)}
+
+figure{margin:20px 0 8px}
+figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}
+.figtitle{font-size:14px;font-weight:600;margin-bottom:2px}
+.figsub{font-size:12.5px;color:var(--text-secondary);margin-bottom:12px}
+svg{display:block;max-width:100%;height:auto;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--text-secondary);margin:8px 0 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:6px 0}
+.quote{border-left:2px solid var(--axis);padding:2px 0 2px 14px;margin:10px 0;color:var(--text-secondary);font-size:14px}
+.quote b{color:var(--text-primary);font-weight:600}
+
+.rec{border:1px solid var(--border);border-left:3px solid var(--series-1);border-radius:8px;background:var(--surface-1);padding:14px 18px;margin:14px 0}
+.rec.p0{border-left-color:var(--critical)}
+.rec.p1{border-left-color:var(--warning)}
+.rec.p2{border-left-color:var(--series-3)}
+.rec .h{font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rec .p{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rec p{margin:6px 0 0;font-size:14px;color:var(--text-secondary)}
+
+.tooltip{position:fixed;pointer-events:none;background:var(--surface-1);border:1px solid var(--border);
+  border-radius:7px;padding:8px 11px;font-size:12.5px;box-shadow:0 4px 14px rgba(0,0,0,.16);opacity:0;
+  transition:opacity .1s;z-index:50;max-width:260px;line-height:1.45}
+.tooltip .tt-h{font-weight:600;margin-bottom:3px}
+.tooltip .tt-r{color:var(--text-secondary);font-variant-numeric:tabular-nums}
+
+.toc{font-size:13.5px;columns:2;column-gap:32px}
+.toc a{display:block;padding:3px 0;text-decoration:none;color:var(--text-secondary);break-inside:avoid}
+.toc a:hover{color:var(--series-1)}
+.toc a .n{color:var(--muted);display:inline-block;width:22px}
+@media (max-width:620px){.toc{columns:1} h1{font-size:24px} .wrap{padding:28px 16px 64px}}
+details{margin:12px 0;font-size:14px}
+summary{cursor:pointer;color:var(--text-secondary);font-size:13.5px}
+.footnote{font-size:12.5px;color:var(--muted);border-top:1px solid var(--border);margin-top:48px;padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page">
+  <h1>Human Rating Reliability — Preliminary Experiment</h1>
+  <p class="sub">Do the raters agree, which of the eight metrics survive, and what to change before the next round.</p>
+  <p class="meta">Source: <code>human_rating.csv</code> · 184 ratings · 5 raters · 10 videos · rated 2026-07-04 → 2026-07-09</p>
+</header>
+
+<div class="card">
+  <h4 style="margin-top:0">Contents</h4>
+  <nav class="toc">
+    <a href="#s1"><span class="n">1</span>What is actually in the file</a>
+    <a href="#s2"><span class="n">2</span>Do the three raters agree?</a>
+    <a href="#s3"><span class="n">3</span>Where the disagreement comes from</a>
+    <a href="#s4"><span class="n">4</span>Are the metrics doing their job?</a>
+    <a href="#s5"><span class="n">5</span>Root causes, from the comments</a>
+    <a href="#s6"><span class="n">6</span>Metric-by-metric redesign</a>
+    <a href="#s7"><span class="n">7</span>Instrument &amp; protocol fixes</a>
+    <a href="#s8"><span class="n">8</span>How many raters do you need?</a>
+    <a href="#s9"><span class="n">9</span>Proposed next experiment</a>
+    <a href="#s10"><span class="n">10</span>Appendix: full data &amp; methods</a>
+  </nav>
+</div>
+
+<h2 style="margin-top:40px">Headline</h2>
+<p class="lede">Across the 24 cells the three named raters share (8 metrics × videos V1–V3):</p>
+<div class="tiles">
+  <div class="tile">
+    <div class="label">Exact 3-way agreement</div>
+    <div class="value">8%</div>
+    <div class="note">2 of 24 cells identical</div>
+  </div>
+  <div class="tile">
+    <div class="label">All within 1 point</div>
+    <div class="value">46%</div>
+    <div class="note">54% of cells span ≥2 points</div>
+  </div>
+  <div class="tile">
+    <div class="label">Krippendorff's α</div>
+    <div class="value" style="color:var(--critical)">0.24</div>
+    <div class="note">unacceptable (α ≥ 0.667 tentative)</div>
+  </div>
+  <div class="tile">
+    <div class="label">ICC(2,1) absolute</div>
+    <div class="value" style="color:var(--critical)">0.31</div>
+    <div class="note">poor (&lt; 0.50)</div>
+  </div>
+</div>
+
+<div class="card">
+  <p style="margin-top:0"><b>Verdict.</b> No — the raters agree on only <b>2 of 8 metrics</b> (Content Accuracy and Visual Quality, where all three land within one point on every video). The other six do not hold. But the failure is <b>structured, not random</b>: about half the total variance is genuine signal about the videos, a fifth is pure rater-severity offset, and a third is residual disagreement. That means the instrument is fixable — the fixes are rubric anchoring, a mandatory "no basis to judge" option, and rater calibration, not simply "recruit more raters."</p>
+  <p style="margin-bottom:0"><b>Caveat that governs everything below.</b> Three videos per rater. Every per-metric percentage is out of 3, and the reliability coefficients carry very wide confidence intervals. Treat this as a pilot that tells you which metrics to <i>fix</i>, not one that ranks systems.</p>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s1"><span class="num">1</span>What is actually in the file</h2>
+<p class="lede">Before any agreement statistic: two of the five raters produced data that cannot be used.</p>
+
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Rater</th><th class="num">Ratings</th><th>Videos</th><th class="num">Mean</th><th class="num">SD</th><th class="num">Commented</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>qing_yue_chen</td><td class="num">24</td><td>V1–V3</td><td class="num">4.29</td><td class="num">0.79</td><td class="num">20/24</td><td><span class="chip good">usable</span></td></tr>
+    <tr><td>vshourie@asu.edu</td><td class="num">24</td><td>V1–V3</td><td class="num">3.17</td><td class="num">1.11</td><td class="num">11/24</td><td><span class="chip good">usable</span></td></tr>
+    <tr><td>huaiyuan_real</td><td class="num">24</td><td>V1–V3</td><td class="num">4.04</td><td class="num">0.98</td><td class="num">16/24</td><td><span class="chip good">usable</span></td></tr>
+    <tr><td>aarsh</td><td class="num">32</td><td>V1–V3, V_iamlbt</td><td class="num">1.00</td><td class="num">0.00</td><td class="num">0/32</td><td><span class="chip bad">degenerate</span></td></tr>
+    <tr><td>hua_wei</td><td class="num">80</td><td>all 10</td><td class="num">4.67</td><td class="num">0.62</td><td class="num">3/80</td><td><span class="chip warn">near-ceiling</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<figure>
+  <div class="figtitle">Score distribution per rater, on the shared V1–V3 block</div>
+  <div class="figsub">24 ratings each. Two raters never move off a single value.</div>
+  <div id="chart-dist"></div>
+  <figcaption>Darker = higher score. aarsh is 24/24 at score 1; hua_wei is 18/24 at score 5.</figcaption>
+</figure>
+
+<h4>aarsh — every rating is 1</h4>
+<p>All 32 submissions are the score <code>1</code>, with zero comments, all stamped in a single session on 2026-07-09. Under the 5-point scale this would mean "worst possible on every dimension of every video," including videos other raters scored 5. This is almost certainly a <b>form default that was submitted without interaction</b>, not a judgment. Including it drives Krippendorff's α <b>negative (−0.10)</b> — worse than chance.</p>
+
+<h4>hua_wei — a ceiling rater</h4>
+<p>67 of 80 ratings are 5 (SD 0.62), with 3 comments in 80 cells. The data may be sincere, but a rater who never uses the bottom half of the scale contributes almost no discriminating information: including hua_wei moves α from 0.24 to 0.18.</p>
+
+<div class="card">
+  <p style="margin:0"><b>Action:</b> exclude aarsh from all analysis and treat the row as a data-collection bug — add a server-side check that rejects a submission where every metric carries the initial default value, and require an explicit interaction per item. Keep hua_wei's data but flag it; the calibration step in §7 is aimed exactly at this. <b>All statistics below use the three usable raters only.</b></p>
+</div>
+
+<figure>
+  <div class="figtitle">Reliability under each inclusion rule</div>
+  <div class="figsub">Krippendorff's α (interval) on the same 24 metric × video cells.</div>
+  <div id="chart-scenarios"></div>
+  <figcaption>The last two rows are diagnostics, not results — they show how much of the deficit is attributable to a single fixable cause.</figcaption>
+</figure>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s2"><span class="num">2</span>Do the three raters agree?</h2>
+<p class="lede">Metric by metric, on 3 videos each. Green = all three raters within one point on all three videos.</p>
+
+<figure>
+  <div class="figtitle">The full rating grid, shaded by disagreement</div>
+  <div class="figsub">Each cell shows the three scores in rater order; shading is the max−min spread.</div>
+  <div id="chart-heat"></div>
+  <figcaption>Hover a cell for detail. Spread 0 = identical, 3 = e.g. one rater says 5 and another says 2.</figcaption>
+</figure>
+
+<div class="tablewrap">
+<table>
+  <thead><tr>
+    <th>Metric</th><th class="num">qing</th><th class="num">vshourie</th><th class="num">huaiyuan</th>
+    <th class="num">Within 1pt</th><th class="num">Max spread</th><th>Verdict</th>
+  </tr></thead>
+  <tbody id="tbl-metric"></tbody>
+</table>
+</div>
+
+<h4>Pairwise</h4>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Pair</th><th class="num">Exact</th><th class="num">Within 1</th><th class="num">Mean difference</th><th class="num">r</th><th>Reading</th></tr></thead>
+  <tbody>
+    <tr><td>qing ↔ huaiyuan</td><td class="num">25%</td><td class="num">92%</td><td class="num">+0.25</td><td class="num">+0.42</td><td>Same severity level, still only weakly correlated</td></tr>
+    <tr><td>vshourie ↔ huaiyuan</td><td class="num">38%</td><td class="num">58%</td><td class="num">−0.88</td><td class="num">+0.49</td><td>Best correlation, largest offset</td></tr>
+    <tr><td>qing ↔ vshourie</td><td class="num">21%</td><td class="num">62%</td><td class="num">+1.12</td><td class="num">+0.33</td><td>Weakest pair on both counts</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h4>They do agree on the coarse ranking</h4>
+<p>Averaged over all eight metrics, all three raters put <b>V1 first</b>, and two of three give V1 &gt; V2 &gt; V3 (qing swaps V2 and V3). So the instrument already supports a crude "is this video better than that one" judgment — it does not yet support "this video scores 4.2 on Bloom alignment."</p>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Rater</th><th class="num">V1</th><th class="num">V2</th><th class="num">V3</th><th>Ranking</th></tr></thead>
+  <tbody>
+    <tr><td>qing_yue_chen</td><td class="num">4.62</td><td class="num">4.00</td><td class="num">4.25</td><td>V1 &gt; V3 &gt; V2</td></tr>
+    <tr><td>vshourie@asu.edu</td><td class="num">4.50</td><td class="num">2.75</td><td class="num">2.25</td><td>V1 &gt; V2 &gt; V3</td></tr>
+    <tr><td>huaiyuan_real</td><td class="num">4.50</td><td class="num">4.12</td><td class="num">3.50</td><td>V1 &gt; V2 &gt; V3</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s3"><span class="num">3</span>Where the disagreement comes from</h2>
+<p class="lede">Total score variance splits three ways. Only the middle slice is trivially fixable.</p>
+
+<figure>
+  <div class="figtitle">Variance decomposition (3 raters × 24 cells)</div>
+  <div class="figsub">Two-way ANOVA sums of squares as a share of total.</div>
+  <div id="chart-var"></div>
+  <figcaption>Rater severity is a constant per-rater offset — removable by centering or by calibration. Residual is genuine item-level disagreement and is the hard part.</figcaption>
+</figure>
+
+<div class="tiles">
+  <div class="tile"><div class="label">Item signal</div><div class="value" style="color:var(--series-1)">48.4%</div><div class="note">Real differences between metric × video</div></div>
+  <div class="tile"><div class="label">Rater severity</div><div class="value" style="color:var(--series-2)">19.9%</div><div class="note">Constant offset per rater — fixable by calibration</div></div>
+  <div class="tile"><div class="label">Residual</div><div class="value" style="color:var(--critical)">31.6%</div><div class="note">Item-level disagreement — the rubric problem</div></div>
+</div>
+
+<figure>
+  <div class="figtitle">Rater severity: deviation from the panel mean</div>
+  <div class="figsub">Grand mean across all 24 cells, relative to the 3-rater average of 3.83.</div>
+  <div id="chart-sev"></div>
+  <figcaption>vshourie sits about 1.1 points below qing on the same content. Removing this offset alone lifts α from 0.24 to 0.42.</figcaption>
+</figure>
+
+<p>Severity-centering each rater's scores raises α from <b>0.24 → 0.42</b>, and the consistency-form ICC(3,1) is 0.41 versus the absolute-form 0.31. In other words: <b>the raters are ordering the videos more similarly than their raw numbers suggest — they are simply anchored to different points on the scale.</b> That is exactly what an anchored rubric plus a calibration round fixes.</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s4"><span class="num">4</span>Are the metrics doing their job?</h2>
+<p class="lede">A metric earns its place if it (a) separates videos, (b) uses the scale, and (c) is not a duplicate of another metric. Several fail all three.</p>
+
+<h3>4.1 Discrimination — does the metric separate the videos at all?</h3>
+<figure>
+  <div class="figtitle">Signal vs. noise per metric</div>
+  <div class="figsub">Between-video SD (does the metric distinguish V1/V2/V3?) against mean between-rater SD (how much do raters disagree on the same video?).</div>
+  <div id="chart-disc"></div>
+  <figcaption>Metrics below the diagonal produce more rater noise than video signal — with this panel they cannot rank videos. Logic sits on the floor: between-video SD is exactly 0.</figcaption>
+</figure>
+
+<p><b>Logic is the clearest failure.</b> qing scored it 5/5/5 and vshourie 3/3/3 — both raters gave a flat, video-independent score, with opposite anchors. A metric with zero between-video variance carries no information about the videos, only about who rated them.</p>
+
+<h3>4.2 Scale use — ceiling effects</h3>
+<figure>
+  <div class="figtitle">Share of ratings at the top of the scale</div>
+  <div class="figsub">Percent of the 9 core-rater ratings per metric that were a 5, and the range of the scale actually used.</div>
+  <div id="chart-ceil"></div>
+  <figcaption>Logic, Bloom and ICAP alignment sit at 56–67% top-of-scale. Visual Quality never once received a 5 — it is the only metric using the lower half properly.</figcaption>
+</figure>
+<p>Three metrics (Logic, Bloom, ICAP) are majority-5. A metric that is mostly 5 cannot show improvement in a system you are trying to improve — you have no headroom to measure into. Note also that <b>no rater ever used score 1</b> among the three usable raters; the effective scale is 2–5, i.e. four points, not five.</p>
+
+<h3>4.3 Redundancy — are eight metrics measuring eight things?</h3>
+<figure>
+  <div class="figtitle">Inter-metric correlation, rater-severity removed</div>
+  <div class="figsub">Pearson r on severity-centered scores, n = 9 observations per pair. Blue = positive, red = negative.</div>
+  <div id="chart-corr"></div>
+  <figcaption>Correlations this high on n=9 are indicative, not conclusive — but the clustering is consistent with the comment evidence in §5.</figcaption>
+</figure>
+<p>Two clusters emerge, plus one outlier:</p>
+<ul>
+  <li><b>Pedagogical cluster</b> — Objective Coverage, Learning Adaptation, Bloom Alignment (r = 0.85–0.90 with each other). Raters appear to be forming a single "is this pedagogically sound" impression and writing it into three boxes.</li>
+  <li><b>Presentation cluster</b> — Content Accuracy, Visual Quality, ICAP Alignment (r = 0.78–0.85). ICAP landing here rather than with Bloom is a red flag: ICAP is an <i>engagement</i> construct, but it is tracking <i>visual polish</i>.</li>
+  <li><b>Logic</b> — correlates negatively with Content Accuracy (−0.45) and Visual Quality (−0.54). A near-zero-variance metric will produce unstable correlations, so do not over-read the sign; the message is that Logic is not behaving like the others.</li>
+</ul>
+<p>Practically: <b>eight metrics are probably measuring three to four constructs.</b> That is not necessarily wrong — but it means the eight scores should not be treated as independent evidence, and an average across all eight over-weights whichever construct is represented three times.</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s5"><span class="num">5</span>Root causes, from the comments</h2>
+<p class="lede">The free-text comments explain the numbers. Five distinct failure modes, each with a specific fix.</p>
+
+<h3>Cause 1 — A default score was submitted as if it were a judgment</h3>
+<div class="quote">qing_yue_chen, V2 · Bloom Alignment · <b>score 5</b> — "no input"<br>
+qing_yue_chen, V2 · ICAP Alignment · <b>score 5</b> — "no input"<br>
+qing_yue_chen, V3 · Bloom Alignment · <b>score 5</b> — "no input"<br>
+qing_yue_chen, V3 · ICAP Alignment · <b>score 5</b> — "no input"</div>
+<p>Four cells where the rater explicitly wrote that they had nothing to say, yet a <b>5</b> was recorded. These four are not ratings — they are missing data recorded as the maximum score, and they sit precisely on top of the two worst-disagreement metrics. Dropping just these four cells lifts α from <b>0.24 → 0.38</b> and ICC(2,1) from <b>0.31 → 0.42</b>, on 20 remaining cells.</p>
+<p><b>Fix:</b> no pre-filled default; an explicit, first-class <b>"Cannot judge / Not applicable"</b> option that is stored as missing rather than as a number; and no submission until every item is either scored or marked N/A.</p>
+
+<h3>Cause 2 — Construct confusion: the wrong judgment under the metric's name</h3>
+<div class="quote">qing_yue_chen, V1 · <b>Visual Quality</b> — "no obvious hallucinations at all. But the transition… is a bit stiff"<br>
+qing_yue_chen, V2 · <b>Content Accuracy</b> — "the animation isn't vivid"</div>
+<p>"No hallucinations" is an accuracy judgment written under Visual Quality; "the animation isn't vivid" is a visual judgment written under Content Accuracy. The raters are not distinguishing the constructs the metric names claim to separate — which is precisely what the 0.85 correlation between those two metrics in §4.3 shows quantitatively.</p>
+<p><b>Fix:</b> every metric needs a one-line <i>inclusion</i> and <i>exclusion</i> definition — "Content Accuracy covers factual and conceptual correctness of the narration and on-screen text. It does <b>not</b> cover how appealing or clear the animation is; rate that under Visual Quality."</p>
+
+<h3>Cause 3 — One metric name, two constructs</h3>
+<div class="quote">qing_yue_chen, V2 · Logic · <b>5</b> — "overall the logic doesn't have mistakes"<br>
+vshourie, V1 · Logic · <b>3</b> — "Jumps between most slides feel abrupt, without slowly building into the content overtime"<br>
+vshourie, V2 · Logic · <b>3</b> — "Content could flow smoother for a better lesson overall"</div>
+<p>qing reads "Logic" as <b>absence of logical errors</b> — effectively a binary check that always passes, hence 5/5/5. vshourie reads it as <b>quality of narrative sequencing and transitions</b> — a graded property, hence 3/3/3. They are not disagreeing about the video; they are rating two different things.</p>
+<p><b>Fix:</b> split into <b>Logical Correctness</b> (binary or 3-point: are there reasoning errors?) and <b>Instructional Sequencing</b> (graded: does the material build coherently?). Expect this one change to fix the worst-behaved metric in the set.</p>
+
+<h3>Cause 4 — The reference standard is left to the rater</h3>
+<div class="quote">vshourie, V3 · Objective Coverage · <b>2</b> — "Learning goals partially covered, only 2/4 covered <b>as per my interpretation</b>"<br>
+huaiyuan_real, V3 · Objective Coverage · <b>3</b> — "even it's introductory, some real code should be included"</div>
+<p>Objective Coverage is being scored against each rater's private reconstruction of what the learning objectives were, and against each rater's private standard for depth. vshourie is counting objectives (2 of 4); huaiyuan is judging pedagogical sufficiency. Without a stated objective list, this metric cannot converge.</p>
+<p><b>Fix:</b> show the raters the video's <b>declared learning objectives</b> alongside it, and make the metric mechanical — "how many of the N stated objectives are substantively addressed?" This converts a judgment call into a count, which is where inter-rater agreement is cheapest to buy.</p>
+
+<h3>Cause 5 — Framework metrics without the framework</h3>
+<div class="quote">huaiyuan_real, V2 · Bloom · <b>5</b> — "I think just understanding is fine."<br>
+vshourie, V2 · Bloom · <b>3</b> — "Even if not presented, this is not likely to be in alignment with Bloom (active)"<br>
+huaiyuan_real, V2 · ICAP · <b>3</b> — "It didn't introduce any active parts."<br>
+vshourie, V2 · ICAP · <b>3</b> — "Barely engages the student at all"</div>
+<p>Bloom and ICAP are ordinal <i>taxonomies</i> — Remember/Understand/Apply/Analyze/Evaluate/Create, and Passive/Active/Constructive/Interactive. Here they have been flattened onto a generic 1–5 "goodness" scale, and the raters then disagree about whether reaching a lower tier is a defect. huaiyuan says "just understanding is fine" and scores 5; vshourie treats not-active as a deficit and scores 3. Both are internally consistent. The scale is what is broken.</p>
+<p><b>Fix:</b> rate these on their native categorical scale. Ask "what is the <b>highest ICAP mode</b> this video elicits: Passive / Active / Constructive / Interactive?" and "what is the <b>highest Bloom level</b> targeted?" Score agreement with a nominal/ordinal κ. Whether a given level is <i>good</i> is a separate question the researcher answers against the video's stated intent — never the rater's private standard.</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s6"><span class="num">6</span>Metric-by-metric redesign</h2>
+<p class="lede">What to keep, fix, split, or retire, with the evidence for each call.</p>
+
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Metric</th><th>Evidence</th><th>Call</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><b>Content Accuracy</b></td>
+      <td>3/3 within 1pt; range 3–5; discrimination ratio 1.34</td>
+      <td><span class="chip good">keep</span></td>
+      <td>Add exclusion clause (§5 cause 2). Consider re-basing as an error count — "number of factual errors" — which is countable and nearly rater-proof.</td>
+    </tr>
+    <tr>
+      <td><b>Visual Quality</b></td>
+      <td>3/3 within 1pt; only metric with no ceiling (0% fives); ratio 1.34</td>
+      <td><span class="chip good">keep</span></td>
+      <td>Best-behaved metric in the set. Keep as-is; use it as the model for rewriting the others.</td>
+    </tr>
+    <tr>
+      <td><b>Objective Coverage</b></td>
+      <td>1/3 within 1pt; ratio 0.97; comments show no shared reference</td>
+      <td><span class="chip warn">fix</span></td>
+      <td>Supply the declared objectives; convert to "k of N objectives addressed."</td>
+    </tr>
+    <tr>
+      <td><b>Multimedia Learning Design</b></td>
+      <td>1/3 within 1pt; ratio 0.90; r = 0.68 with Content Accuracy</td>
+      <td><span class="chip warn">fix</span></td>
+      <td>Decompose into the specific Mayer principles you care about (narration–visual alignment, redundancy, signalling) as separate short checks rather than one holistic score.</td>
+    </tr>
+    <tr>
+      <td><b>Logic</b></td>
+      <td>Between-video SD = 0.00; 0/3 within 1pt; two raters flat at opposite anchors</td>
+      <td><span class="chip bad">split</span></td>
+      <td>→ <b>Logical Correctness</b> (error check) + <b>Instructional Sequencing</b> (graded flow). See §5 cause 3.</td>
+    </tr>
+    <tr>
+      <td><b>Learning Adaptation</b></td>
+      <td>Max spread 3; ratio 0.49; r = 0.90 with Objective Coverage, 0.88 with Bloom</td>
+      <td><span class="chip bad">redefine</span></td>
+      <td>Currently indistinguishable from the pedagogical cluster. Either name a concrete target learner ("a first-year undergrad with no prior exposure") and ask about fit for <i>that</i> learner, or retire it.</td>
+    </tr>
+    <tr>
+      <td><b>Bloom Alignment</b></td>
+      <td>67% fives; max spread 3; 2 of 3 qing scores were "no input"</td>
+      <td><span class="chip bad">re-scale</span></td>
+      <td>Convert to the categorical Bloom level actually targeted. See §5 cause 5.</td>
+    </tr>
+    <tr>
+      <td><b>ICAP Alignment</b></td>
+      <td>56% fives; max spread 3; r = 0.78 with Visual Quality — tracking polish, not engagement</td>
+      <td><span class="chip bad">re-scale</span></td>
+      <td>Convert to the categorical ICAP mode elicited. Anchor with concrete triggers: does the video pause and ask? require a written response? involve a peer?</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s7"><span class="num">7</span>Instrument &amp; protocol fixes</h2>
+<p class="lede">Ordered by expected reliability gain per unit of effort. The first three cost almost nothing and address the largest measured effects.</p>
+
+<div class="rec p0">
+  <div class="h"><span class="p">P0</span> Remove the default score; add an explicit "Cannot judge"</div>
+  <p>Directly measured: 4 non-response cells recorded as 5. Removing them alone takes α 0.24 → 0.38 and ICC 0.31 → 0.42. Store N/A as missing, never as a number, and block submission on unanswered items. Also reject submissions where every item equals the initial value (the aarsh case).</p>
+</div>
+
+<div class="rec p0">
+  <div class="h"><span class="p">P0</span> Write behaviourally anchored descriptors for all 5 scale points</div>
+  <p>Rater severity is 19.9% of total variance; centering it recovers α 0.24 → 0.42. Anchors are what make "4" mean the same thing to two people. Each metric needs one concrete sentence per level, describing observable video properties — not "good / fair / poor." Note that no rater used score 1 and only Visual Quality dipped to 2: the anchors must actively describe what a 1 and a 2 look like, or the scale stays compressed to 3–5.</p>
+</div>
+
+<div class="rec p0">
+  <div class="h"><span class="p">P0</span> Add inclusion/exclusion boundaries between adjacent metrics</div>
+  <p>Comments show accuracy judgments filed under Visual Quality and vice versa (§5 cause 2), matching the r = 0.85 between them. One line each: what this metric covers, and explicitly which neighbouring metric handles the thing it does not.</p>
+</div>
+
+<div class="rec p1">
+  <div class="h"><span class="p">P1</span> Run a calibration round before the real ratings</div>
+  <p>All raters score the same 2–3 anchor videos, then meet to reconcile every cell differing by ≥2 and record the resolution as an anchor example. This is the standard remedy for the severity spread seen here, and it converts the pilot's disagreements into rubric documentation instead of discarding them.</p>
+</div>
+
+<div class="rec p1">
+  <div class="h"><span class="p">P1</span> Re-scale Bloom and ICAP to their native taxonomies</div>
+  <p>They are ordinal categories, not 1–5 quality scores (§5 cause 5). This also removes their ceiling effect: 67% and 56% of ratings currently sit at 5, leaving no headroom to detect improvement.</p>
+</div>
+
+<div class="rec p1">
+  <div class="h"><span class="p">P1</span> Show raters the video's declared learning objectives</div>
+  <p>Turns Objective Coverage from a private reconstruction into a count against a fixed list (§5 cause 4) — the cheapest agreement gain available in the set.</p>
+</div>
+
+<div class="rec p2">
+  <div class="h"><span class="p">P2</span> Collapse eight metrics to the constructs actually being measured</div>
+  <p>The correlation structure suggests 3–4 constructs (§4.3). Either reduce the instrument, or keep eight but report them grouped — and stop averaging all eight into one number, since that silently triple-weights the pedagogical construct.</p>
+</div>
+
+<div class="rec p2">
+  <div class="h"><span class="p">P2</span> Add pairwise preference judgments alongside the ratings</div>
+  <p>All three raters already agree V1 is best — the coarse signal is real. "Which of these two videos is better on X, and why?" is far more reliable than absolute scoring, needs no anchoring, and gives you a system-comparison result even while the absolute rubric is still being fixed.</p>
+</div>
+
+<div class="rec p2">
+  <div class="h"><span class="p">P2</span> Require a comment on any score below 3 or at 5</div>
+  <p>Comment coverage was 46–83% among usable raters and 4% for the ceiling rater. Extreme scores are where the evidence lives, and mandatory justification is a well-established brake on careless extremes.</p>
+</div>
+
+<div class="rec p2">
+  <div class="h"><span class="p">P2</span> Randomize video order per rater and record time-on-task</div>
+  <p>All three usable raters rated in the fixed order V1, V2, V3, so order and fatigue effects are perfectly confounded with the video. Time-on-task additionally gives you an objective screen for low-effort submissions.</p>
+</div>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s8"><span class="num">8</span>How many raters do you need?</h2>
+<p class="lede">Individual raters are unreliable here, but the <i>average</i> of several is more reliable than any one. That relationship is quantifiable.</p>
+
+<figure>
+  <div class="figtitle">Reliability of an averaged rating vs. panel size</div>
+  <div class="figsub">Spearman–Brown projection from the observed single-rater ICC. Target line at 0.80.</div>
+  <div id="chart-sb"></div>
+  <figcaption>Two scenarios: the instrument as it stands (single-rater ICC 0.305), and the same instrument after removing the non-response cells (0.417). Fixing the instrument is worth roughly four raters.</figcaption>
+</figure>
+
+<div class="tiles">
+  <div class="tile"><div class="label">Current panel (k=3)</div><div class="value">0.57</div><div class="note">ICC(2,k) of the 3-rater mean</div></div>
+  <div class="tile"><div class="label">Raters for 0.80, as-is</div><div class="value" style="color:var(--critical)">10</div><div class="note">at single-rater ICC 0.305</div></div>
+  <div class="tile"><div class="label">Raters for 0.80, fixed</div><div class="value" style="color:var(--good)">6</div><div class="note">at single-rater ICC 0.417</div></div>
+  <div class="tile"><div class="label">Raters for 0.90, as-is</div><div class="value">21</div><div class="note">rarely worth it — fix the rubric instead</div></div>
+</div>
+
+<p><b>Read this as a budget argument.</b> Reaching a defensible 0.80 by brute force costs 10 raters × every video. The P0 fixes in §7 cost one afternoon of rubric writing and drop that to 6 — and the estimate of 0.417 comes only from removing four bad cells, before any anchoring or calibration. Anchoring and a calibration round would plausibly push single-rater ICC higher still.</p>
+<p>Note also the <b>3-video ceiling on precision</b>: with n = 3 items, the confidence interval on any of these coefficients spans most of the plausible range. The next round needs more videos more than it needs more raters — see §9.</p>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s9"><span class="num">9</span>Proposed next experiment</h2>
+
+<div class="card">
+  <h4 style="margin-top:0">Design</h4>
+  <ul>
+    <li><b>Videos:</b> 12–20, spanning the quality range you actually care about (include known-bad and known-good exemplars — the pilot's three all scored in a narrow band, which is part of why the metrics look non-discriminating).</li>
+    <li><b>Raters:</b> 5–6 per video, fully crossed on at least a 6-video overlap block so a proper ICC can be computed. Screen out non-responders with the time-on-task and default-value checks.</li>
+    <li><b>Instrument:</b> the revised metric set from §6 — 2 kept, 3 fixed, 1 split, 2 re-scaled to categorical — with anchored descriptors and a mandatory N/A option.</li>
+    <li><b>Protocol:</b> calibration round on 2 anchor videos and a reconciliation meeting first; then randomized video order; comments mandatory on extreme scores.</li>
+    <li><b>Secondary task:</b> pairwise preference on a subset, as an anchoring-free cross-check on the absolute scores.</li>
+  </ul>
+  <h4>Pre-registered success criteria</h4>
+  <ul>
+    <li>Krippendorff's α ≥ 0.667 per metric (retire or redesign any metric that misses it twice).</li>
+    <li>ICC(2,k) ≥ 0.80 for the reported panel mean.</li>
+    <li>No metric with &gt;40% of ratings at a single scale point.</li>
+    <li>No pair of metrics with severity-adjusted r &gt; 0.80 — else merge them.</li>
+  </ul>
+</div>
+
+<h4>What you can already claim from this pilot</h4>
+<ul>
+  <li>The three usable raters <b>consistently rank V1 highest</b>; two of three produce the identical full ordering.</li>
+  <li><b>Content Accuracy and Visual Quality are usable metrics today</b> — all three raters agree within one point on every video.</li>
+  <li>Roughly <b>half the score variance is real signal</b> about the videos, so the construct is measurable; the instrument, not the task, is the bottleneck.</li>
+</ul>
+<h4>What this pilot cannot support</h4>
+<ul>
+  <li>Any absolute claim of the form "our system scores X on metric Y."</li>
+  <li>Any comparison between systems on Logic, Bloom, ICAP, or Learning Adaptation.</li>
+  <li>Any average across all eight metrics, given the redundancy structure in §4.3.</li>
+</ul>
+
+<!-- ─────────────────────────────────────────── -->
+<h2 id="s10"><span class="num">10</span>Appendix: full data &amp; methods</h2>
+
+<h3>Complete rating grid, all five raters, V1–V3</h3>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Metric</th><th>Video</th><th class="num">qing</th><th class="num">vshourie</th><th class="num">huaiyuan</th><th class="num">aarsh</th><th class="num">hua_wei</th><th class="num">Core-3 spread</th></tr></thead>
+  <tbody id="tbl-full"></tbody>
+</table>
+</div>
+
+<h3>Methods</h3>
+<details open>
+<summary>Statistics used, and their caveats</summary>
+<ul>
+  <li><b>Krippendorff's α (interval difference function)</b> — chance-corrected agreement, handles &gt;2 raters. Conventional bands: ≥0.80 good, ≥0.667 tentative, below that unacceptable. Computed over 24 units × 3 raters.</li>
+  <li><b>ICC(2,1) / ICC(2,k)</b> — two-way random effects, absolute agreement, single measure and k-measure forms. Penalizes systematic rater severity. Bands (Koo &amp; Li): &lt;0.50 poor, 0.50–0.75 moderate, 0.75–0.90 good.</li>
+  <li><b>ICC(3,1)</b> — two-way mixed, consistency. Ignores severity offsets; the gap between it and ICC(2,1) is the size of the severity problem.</li>
+  <li><b>Spearman–Brown</b> — projects the reliability of a k-rater mean from the single-rater ICC. Assumes exchangeable raters; the projection is optimistic if the added raters resemble aarsh or hua_wei.</li>
+  <li><b>Variance decomposition</b> — two-way ANOVA sums of squares (item, rater, residual) as a share of total, no interaction term estimable with one observation per cell.</li>
+  <li><b>Inter-metric correlations</b> — Pearson r on rater-mean-centered scores, so a lenient rater's across-the-board high scores do not inflate them. n = 9 per pair; these are directional evidence only.</li>
+</ul>
+<p><b>Principal limitation:</b> 3 videos. Every coefficient here has a confidence interval wide enough to include both "somewhat worse" and "somewhat better" than reported. The qualitative findings — the aarsh degenerate rows, the "no input" cells scored 5, the two-constructs-under-Logic split, the Bloom/ICAP scale mismatch — do not depend on sample size and are the more actionable half of this report.</p>
+</details>
+
+<p class="footnote">Generated from <code>human_rating.csv</code> (184 rows, 5 raters, 10 videos). All statistics recomputed from the raw file; the appendix grid is the raw data unmodified. Rater identifiers as recorded in the source file.</p>
+
+</div>
+<div class="tooltip" id="tt"></div>
+
+<script>
+const DATA = {"names":{"objective_coverage":"Learning Objective Coverage","content_accuracy":"Content Accuracy","visual_quality":"Visual Quality","multimedia_design":"Multimedia Learning Design","logic":"Logic","learning_adaptation":"Learning Adaptation","bloom_alignment":"Bloom Alignment","icap_alignment":"ICAP Alignment"},"metrics":["objective_coverage","content_accuracy","visual_quality","multimedia_design","logic","learning_adaptation","bloom_alignment","icap_alignment"],"grid":{"objective_coverage":{"V1":{"qing_yue_chen":4,"vshourie@asu.edu":5,"huaiyuan_real":5},"V2":{"qing_yue_chen":4,"vshourie@asu.edu":3,"huaiyuan_real":5},"V3":{"qing_yue_chen":4,"vshourie@asu.edu":2,"huaiyuan_real":3}},"content_accuracy":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":5,"huaiyuan_real":4},"V2":{"qing_yue_chen":3,"vshourie@asu.edu":3,"huaiyuan_real":4},"V3":{"qing_yue_chen":4,"vshourie@asu.edu":3,"huaiyuan_real":3}},"visual_quality":{"V1":{"qing_yue_chen":4,"vshourie@asu.edu":4,"huaiyuan_real":3},"V2":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":2},"V3":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":2}},"multimedia_design":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":4,"huaiyuan_real":4},"V2":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":4},"V3":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":4}},"logic":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5},"V2":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5}},"learning_adaptation":{"V1":{"qing_yue_chen":4,"vshourie@asu.edu":5,"huaiyuan_real":5},"V2":{"qing_yue_chen":4,"vshourie@asu.edu":3,"huaiyuan_real":5},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":2,"huaiyuan_real":4}},"bloom_alignment":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":5,"huaiyuan_real":5},"V2":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":2,"huaiyuan_real":4}},"icap_alignment":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":5,"huaiyuan_real":5},"V2":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":3},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":2,"huaiyuan_real":3}}},"grid5":{"objective_coverage":{"V1":{"qing_yue_chen":4,"vshourie@asu.edu":5,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":4,"vshourie@asu.edu":3,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V3":{"qing_yue_chen":4,"vshourie@asu.edu":2,"huaiyuan_real":3,"aarsh":1,"hua_wei":5}},"content_accuracy":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":5,"huaiyuan_real":4,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":3,"vshourie@asu.edu":3,"huaiyuan_real":4,"aarsh":1,"hua_wei":5},"V3":{"qing_yue_chen":4,"vshourie@asu.edu":3,"huaiyuan_real":3,"aarsh":1,"hua_wei":5}},"visual_quality":{"V1":{"qing_yue_chen":4,"vshourie@asu.edu":4,"huaiyuan_real":3,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":2,"aarsh":1,"hua_wei":3},"V3":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":2,"aarsh":1,"hua_wei":4}},"multimedia_design":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":4,"huaiyuan_real":4,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":4,"aarsh":1,"hua_wei":4},"V3":{"qing_yue_chen":3,"vshourie@asu.edu":2,"huaiyuan_real":4,"aarsh":1,"hua_wei":5}},"logic":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5,"aarsh":1,"hua_wei":3}},"learning_adaptation":{"V1":{"qing_yue_chen":4,"vshourie@asu.edu":5,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":4,"vshourie@asu.edu":3,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":2,"huaiyuan_real":4,"aarsh":1,"hua_wei":5}},"bloom_alignment":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":5,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":2,"huaiyuan_real":4,"aarsh":1,"hua_wei":5}},"icap_alignment":{"V1":{"qing_yue_chen":5,"vshourie@asu.edu":5,"huaiyuan_real":5,"aarsh":1,"hua_wei":5},"V2":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":3,"aarsh":1,"hua_wei":4},"V3":{"qing_yue_chen":5,"vshourie@asu.edu":2,"huaiyuan_real":3,"aarsh":1,"hua_wei":4}}},"rater_mean":{"qing_yue_chen":4.291666666666667,"vshourie@asu.edu":3.1666666666666665,"huaiyuan_real":4.041666666666667},"corr":{"objective_coverage":{"objective_coverage":1.0,"content_accuracy":0.668,"visual_quality":0.516,"multimedia_design":0.555,"logic":-0.028,"learning_adaptation":0.896,"bloom_alignment":0.848,"icap_alignment":0.596},"content_accuracy":{"objective_coverage":0.668,"content_accuracy":1.0,"visual_quality":0.846,"multimedia_design":0.685,"logic":-0.452,"learning_adaptation":0.549,"bloom_alignment":0.507,"icap_alignment":0.529},"visual_quality":{"objective_coverage":0.516,"content_accuracy":0.846,"visual_quality":1.0,"multimedia_design":0.506,"logic":-0.539,"learning_adaptation":0.375,"bloom_alignment":0.485,"icap_alignment":0.782},"multimedia_design":{"objective_coverage":0.555,"content_accuracy":0.685,"visual_quality":0.506,"multimedia_design":1.0,"logic":0.157,"learning_adaptation":0.519,"bloom_alignment":0.584,"icap_alignment":0.326},"logic":{"objective_coverage":-0.028,"content_accuracy":-0.452,"visual_quality":-0.539,"multimedia_design":0.157,"logic":1.0,"learning_adaptation":0.149,"bloom_alignment":0.277,"icap_alignment":-0.093},"learning_adaptation":{"objective_coverage":0.896,"content_accuracy":0.549,"visual_quality":0.375,"multimedia_design":0.519,"logic":0.149,"learning_adaptation":1.0,"bloom_alignment":0.876,"icap_alignment":0.568},"bloom_alignment":{"objective_coverage":0.848,"content_accuracy":0.507,"visual_quality":0.485,"multimedia_design":0.584,"logic":0.277,"learning_adaptation":0.876,"bloom_alignment":1.0,"icap_alignment":0.75},"icap_alignment":{"objective_coverage":0.596,"content_accuracy":0.529,"visual_quality":0.782,"multimedia_design":0.326,"logic":-0.093,"learning_adaptation":0.568,"bloom_alignment":0.75,"icap_alignment":1.0}},"permetric":{"objective_coverage":{"exact":0,"within1":1,"maxrange":2,"mean":3.89,"pct5":33,"between":0.68,"within":0.7,"means":{"qing_yue_chen":4,"vshourie@asu.edu":3.33,"huaiyuan_real":4.33},"ratio":0.97},"content_accuracy":{"exact":0,"within1":3,"maxrange":1,"mean":3.78,"pct5":22,"between":0.63,"within":0.47,"means":{"qing_yue_chen":4,"vshourie@asu.edu":3.67,"huaiyuan_real":3.67},"ratio":1.34},"visual_quality":{"exact":0,"within1":3,"maxrange":1,"mean":2.78,"pct5":0,"between":0.63,"within":0.47,"means":{"qing_yue_chen":3.33,"vshourie@asu.edu":2.67,"huaiyuan_real":2.33},"ratio":1.34},"multimedia_design":{"exact":0,"within1":1,"maxrange":2,"mean":3.44,"pct5":11,"between":0.63,"within":0.7,"means":{"qing_yue_chen":3.67,"vshourie@asu.edu":2.67,"huaiyuan_real":4},"ratio":0.9},"logic":{"exact":0,"within1":0,"maxrange":2,"mean":4.33,"pct5":67,"between":0.0,"within":0.94,"means":{"qing_yue_chen":5,"vshourie@asu.edu":3,"huaiyuan_real":5},"ratio":0.0},"learning_adaptation":{"exact":0,"within1":1,"maxrange":3,"mean":4.11,"pct5":44,"between":0.42,"within":0.85,"means":{"qing_yue_chen":4.33,"vshourie@asu.edu":3.33,"huaiyuan_real":4.67},"ratio":0.49},"bloom_alignment":{"exact":1,"within1":1,"maxrange":3,"mean":4.33,"pct5":67,"between":0.54,"within":0.73,"means":{"qing_yue_chen":5,"vshourie@asu.edu":3.33,"huaiyuan_real":4.67},"ratio":0.74},"icap_alignment":{"exact":1,"within1":1,"maxrange":3,"mean":4,"pct5":56,"between":0.72,"within":0.73,"means":{"qing_yue_chen":5,"vshourie@asu.edu":3.33,"huaiyuan_real":3.67},"ratio":0.99}}};
+const RATERS = ["qing_yue_chen","vshourie@asu.edu","huaiyuan_real"];
+const RSHORT = {"qing_yue_chen":"qing","vshourie@asu.edu":"vshourie","huaiyuan_real":"huaiyuan","aarsh":"aarsh","hua_wei":"hua_wei"};
+const VIDS = ["V1","V2","V3"];
+const M = DATA.metrics, NAMES = DATA.names;
+const SEQ = ["#cde2fb","#9ec5f4","#6da7ec","#2a78d6","#1c5cab"]; // ordinal-ish ramp
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+/* ---------- tooltip ---------- */
+const tt = document.getElementById('tt');
+function bindTip(el, html){
+  el.addEventListener('mouseenter', e => { tt.innerHTML = html; tt.style.opacity = 1; });
+  el.addEventListener('mousemove', e => {
+    const r = tt.getBoundingClientRect();
+    let x = e.clientX + 14, y = e.clientY + 14;
+    if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - 14;
+    if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - 14;
+    tt.style.left = x + 'px'; tt.style.top = y + 'px';
+  });
+  el.addEventListener('mouseleave', () => tt.style.opacity = 0);
+}
+const SVGNS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent){
+  const n = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function svgRoot(host, w, h){
+  const s = el('svg', {viewBox:`0 0 ${w} ${h}`, width:'100%', role:'img'});
+  document.getElementById(host).appendChild(s);
+  return s;
+}
+
+/* ---------- 1. score distribution per rater ---------- */
+(function(){
+  const all = ["qing_yue_chen","vshourie@asu.edu","huaiyuan_real","aarsh","hua_wei"];
+  const counts = {};
+  all.forEach(r => { counts[r] = [0,0,0,0,0]; });
+  M.forEach(m => VIDS.forEach(v => all.forEach(r => { counts[r][DATA.grid5[m][v][r]-1]++; })));
+  const W=760, rowH=42, padL=110, padR=20, top=34, H = top + all.length*rowH + 12;
+  const s = svgRoot('chart-dist', W, H);
+  const barW = W - padL - padR;
+  // scale header
+  for (let i=0;i<5;i++){
+    const x = padL + barW*(i)/5;
+    el('rect',{x:x+1,y:8,width:barW/5-2,height:6,rx:2,fill:SEQ[i]},s);
+    const t=el('text',{x:x+barW/10,y:26,'text-anchor':'middle','font-size':10.5,fill:css('--muted')},s);
+    t.textContent = 'score '+(i+1);
+  }
+  all.forEach((r,i) => {
+    const y = top + i*rowH;
+    const lab = el('text',{x:padL-10,y:y+21,'text-anchor':'end','font-size':12.5,fill:css('--text-primary')},s);
+    lab.textContent = RSHORT[r];
+    let x = padL;
+    counts[r].forEach((c,j) => {
+      if (!c) return;
+      const w = barW*c/24;
+      const rect = el('rect',{x:x+1,y:y+4,width:Math.max(w-2,1),height:24,rx:3,fill:SEQ[j]},s);
+      bindTip(rect, `<div class="tt-h">${RSHORT[r]}</div><div class="tt-r">score ${j+1} — ${c} of 24 ratings (${Math.round(c/24*100)}%)</div>`);
+      if (w > 34){
+        const t = el('text',{x:x+w/2,y:y+21,'text-anchor':'middle','font-size':11.5,'font-weight':600,
+          fill: j>=3 ? '#fff' : '#0b0b0b'},s);
+        t.textContent = c;
+      }
+      x += w;
+    });
+  });
+})();
+
+/* ---------- 2. scenarios bar ---------- */
+(function(){
+  const rowsD = [
+    {l:'All 5 raters', a:-0.098, note:'worse than chance', kind:'bad'},
+    {l:'Drop aarsh (4 raters)', a:0.183, note:'', kind:'bad'},
+    {l:'Core 3 raters', a:0.237, note:'reported result', kind:'bad'},
+    {l:'Core 3, −4 "no input" cells', a:0.375, note:'diagnostic', kind:'warn'},
+    {l:'Core 3, severity-centered', a:0.415, note:'diagnostic', kind:'warn'}
+  ];
+  const W=760, padL=205, padR=54, top=26, rowH=34, H=top+rowsD.length*rowH+34;
+  const s = svgRoot('chart-scenarios', W, H);
+  const x0 = padL, w = W-padL-padR, min=-0.15, max=0.75;
+  const X = v => x0 + w*(v-min)/(max-min);
+  // gridlines
+  [-0.1,0,0.2,0.4,0.667].forEach(g => {
+    const isT = g===0.667;
+    el('line',{x1:X(g),x2:X(g),y1:top-6,y2:top+rowsD.length*rowH,stroke:isT?css('--good'):css('--grid'),
+      'stroke-width':isT?1.5:1,'stroke-dasharray':isT?'4 3':''},s);
+    const t=el('text',{x:X(g),y:top+rowsD.length*rowH+16,'text-anchor':'middle','font-size':10.5,
+      fill:isT?css('--good'):css('--muted')},s);
+    t.textContent = isT ? '0.667 threshold' : g.toFixed(g===0?0:1);
+  });
+  rowsD.forEach((r,i)=>{
+    const y = top + i*rowH;
+    const lab = el('text',{x:padL-12,y:y+18,'text-anchor':'end','font-size':12.5,
+      fill: r.note ? css('--text-secondary') : css('--text-primary'),
+      'font-weight': r.l==='Core 3 raters' ? 600 : 400},s);
+    lab.textContent = r.l;
+    const zero = X(0), xv = X(r.a);
+    const bx = Math.min(zero, xv), bw = Math.abs(xv-zero);
+    const col = r.a < 0 ? css('--critical') : (r.kind==='warn' ? css('--series-2') : css('--series-1'));
+    const rect = el('rect',{x:bx,y:y+4,width:Math.max(bw,2),height:20,rx:3,fill:col},s);
+    bindTip(rect, `<div class="tt-h">${r.l}</div><div class="tt-r">Krippendorff's α = ${r.a.toFixed(3)}${r.note?' · '+r.note:''}</div>`);
+    const t=el('text',{x:xv + (r.a<0?-7:7),y:y+19,'text-anchor':r.a<0?'end':'start','font-size':12,
+      'font-weight':600,fill:css('--text-primary')},s);
+    t.textContent = r.a.toFixed(3);
+  });
+})();
+
+/* ---------- 3. heatmap ---------- */
+(function(){
+  const cw=112, ch=56, padL=190, padT=52;
+  const W = padL + VIDS.length*cw + 150, H = padT + M.length*ch + 20;
+  const s = svgRoot('chart-heat', W, H);
+  const shade = ['#f0efec', SEQ[0], SEQ[2], SEQ[4]];  // spread 0..3
+  const shadeDark = ['#383835','#104281','#256abf','#3987e5'];
+  const isDark = () => matchMedia('(prefers-color-scheme: dark)').matches
+      ? document.documentElement.getAttribute('data-theme') !== 'light'
+      : document.documentElement.getAttribute('data-theme') === 'dark';
+  VIDS.forEach((v,j)=>{
+    const t = el('text',{x:padL+j*cw+cw/2,y:padT-26,'text-anchor':'middle','font-size':12.5,
+      'font-weight':600,fill:css('--text-primary')},s);
+    t.textContent = v;
+  });
+  const hdr = el('text',{x:padL,y:padT-8,'font-size':10.5,fill:css('--muted')},s);
+  hdr.textContent = 'qing / vshourie / huaiyuan';
+  M.forEach((m,i)=>{
+    const y = padT + i*ch;
+    const lab = el('text',{x:padL-12,y:y+ch/2+4,'text-anchor':'end','font-size':12.5,fill:css('--text-primary')},s);
+    lab.textContent = NAMES[m];
+    VIDS.forEach((v,j)=>{
+      const sc = RATERS.map(r=>DATA.grid[m][v][r]);
+      const sp = Math.max(...sc)-Math.min(...sc);
+      const x = padL + j*cw;
+      const fill = (isDark()?shadeDark:shade)[sp];
+      const rect = el('rect',{x:x+2,y:y+2,width:cw-6,height:ch-6,rx:5,fill:fill},s);
+      bindTip(rect, `<div class="tt-h">${NAMES[m]} — ${v}</div>`+
+        RATERS.map(r=>`<div class="tt-r">${RSHORT[r]}: ${DATA.grid[m][v][r]}</div>`).join('')+
+        `<div class="tt-r" style="margin-top:3px">spread ${sp}</div>`);
+      const ink = (sp>=2) ? '#ffffff' : css('--text-primary');
+      const t = el('text',{x:x+cw/2-3,y:y+ch/2+5,'text-anchor':'middle','font-size':13.5,
+        'font-weight':600,fill:ink,'font-variant-numeric':'tabular-nums'},s);
+      t.textContent = sc.join('  ');
+    });
+    // verdict chip
+    const pm = DATA.permetric[m];
+    const ok = pm.within1===3;
+    const vx = padL + VIDS.length*cw + 14;
+    el('circle',{cx:vx+6,cy:y+ch/2,r:4,fill: ok?css('--good'):css('--critical')},s);
+    const t = el('text',{x:vx+18,y:y+ch/2+4,'font-size':12,fill:css('--text-secondary')},s);
+    t.textContent = ok ? 'agree' : `${pm.within1}/3 within 1pt`;
+  });
+  // legend
+  const lg = document.createElement('div');
+  lg.className='legend';
+  lg.innerHTML = [0,1,2,3].map(i=>`<span><i class="swatch" style="background:${(isDark()?shadeDark:shade)[i]}"></i>spread ${i}</span>`).join('')
+    + `<span><i class="swatch" style="background:${css('--good')};border-radius:99px"></i>metric agrees</span>`
+    + `<span><i class="swatch" style="background:${css('--critical')};border-radius:99px"></i>metric disagrees</span>`;
+  document.getElementById('chart-heat').appendChild(lg);
+})();
+
+/* ---------- per-metric table ---------- */
+(function(){
+  const tb = document.getElementById('tbl-metric');
+  M.forEach(m=>{
+    const p = DATA.permetric[m];
+    const ok = p.within1===3;
+    const partial = p.within1===1 || p.within1===2;
+    const chip = ok ? '<span class="chip good">agree</span>'
+      : (p.maxrange>=3 ? '<span class="chip bad">severe disagreement</span>' : '<span class="chip warn">disagree</span>');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><b>${NAMES[m]}</b></td>`+
+      RATERS.map(r=>`<td class="num">${p.means[r].toFixed(2)}</td>`).join('')+
+      `<td class="num">${p.within1}/3</td><td class="num">${p.maxrange}</td><td>${chip}</td>`;
+    tb.appendChild(tr);
+  });
+})();
+
+/* ---------- 4. variance decomposition ---------- */
+(function(){
+  const parts = [
+    {l:'Item signal (metric × video)', v:48.4, c:css('--series-1'), n:'real differences between the things being rated'},
+    {l:'Rater severity', v:19.9, c:css('--series-2'), n:'constant per-rater offset — removable by calibration'},
+    {l:'Residual disagreement', v:31.6, c:css('--critical'), n:'item-level disagreement — the rubric problem'}
+  ];
+  const W=760, H=132, padL=0, barY=18, barH=40;
+  const s = svgRoot('chart-var', W, H);
+  let x=0;
+  parts.forEach(p=>{
+    const w = W*p.v/100;
+    const rect = el('rect',{x:x+1,y:barY,width:w-2,height:barH,rx:4,fill:p.c},s);
+    bindTip(rect, `<div class="tt-h">${p.l}</div><div class="tt-r">${p.v}% of total variance</div><div class="tt-r">${p.n}</div>`);
+    const t = el('text',{x:x+w/2,y:barY+26,'text-anchor':'middle','font-size':14,'font-weight':600,fill:'#fff'},s);
+    t.textContent = p.v+'%';
+    x += w;
+  });
+  x=0;
+  parts.forEach((p,i)=>{
+    const w = W*p.v/100;
+    el('line',{x1:x+w/2,x2:x+w/2,y1:barY+barH+4,y2:barY+barH+14,stroke:css('--axis')},s);
+    const t = el('text',{x:Math.min(Math.max(x+w/2,66),W-66),y:barY+barH+30,'text-anchor':'middle',
+      'font-size':12,fill:css('--text-primary')},s);
+    t.textContent = p.l.split(' (')[0];
+    const t2 = el('text',{x:Math.min(Math.max(x+w/2,66),W-66),y:barY+barH+46,'text-anchor':'middle',
+      'font-size':10.5,fill:css('--muted')},s);
+    t2.textContent = i===0?'keep':(i===1?'calibrate away':'fix the rubric');
+    x += w;
+  });
+})();
+
+/* ---------- 5. severity ---------- */
+(function(){
+  const gm = 3.8333;
+  const rows = RATERS.map(r=>({r, m:DATA.rater_mean[r], d:DATA.rater_mean[r]-gm}));
+  const W=760,padL=110,padR=110,top=20,rowH=44,H=top+rows.length*rowH+30;
+  const s = svgRoot('chart-sev', W, H);
+  const w = W-padL-padR, lim=1.3;
+  const X = d => padL + w*(d+lim)/(2*lim);
+  el('line',{x1:X(0),x2:X(0),y1:top-6,y2:top+rows.length*rowH-4,stroke:css('--axis'),'stroke-width':1.5},s);
+  const zt = el('text',{x:X(0),y:top+rows.length*rowH+14,'text-anchor':'middle','font-size':10.5,fill:css('--muted')},s);
+  zt.textContent='panel mean 3.83';
+  const cols=[css('--series-1'),css('--series-2'),css('--series-3')];
+  rows.forEach((rw,i)=>{
+    const y = top+i*rowH;
+    const lab = el('text',{x:padL-12,y:y+22,'text-anchor':'end','font-size':12.5,fill:css('--text-primary')},s);
+    lab.textContent = RSHORT[rw.r];
+    const xv=X(rw.d), z=X(0);
+    const rect = el('rect',{x:Math.min(xv,z),y:y+7,width:Math.max(Math.abs(xv-z),2),height:20,rx:3,fill:cols[i]},s);
+    bindTip(rect, `<div class="tt-h">${RSHORT[rw.r]}</div><div class="tt-r">mean ${rw.m.toFixed(2)} · ${rw.d>=0?'+':''}${rw.d.toFixed(2)} vs panel</div>`);
+    const t = el('text',{x:xv+(rw.d<0?-8:8),y:y+22,'text-anchor':rw.d<0?'end':'start','font-size':12,
+      'font-weight':600,fill:css('--text-primary')},s);
+    t.textContent = `${rw.d>=0?'+':''}${rw.d.toFixed(2)}  (mean ${rw.m.toFixed(2)})`;
+  });
+})();
+
+/* ---------- 6. discrimination scatter ---------- */
+(function(){
+  const W=760,H=380,padL=64,padB=52,padT=16,padR=24;
+  const s = svgRoot('chart-disc', W, H);
+  const pw=W-padL-padR, ph=H-padT-padB, max=1.05;
+  const X = v => padL + pw*v/max, Y = v => padT + ph - ph*v/max;
+  // grid
+  [0,0.25,0.5,0.75,1.0].forEach(g=>{
+    el('line',{x1:padL,x2:padL+pw,y1:Y(g),y2:Y(g),stroke:css('--grid')},s);
+    el('line',{x1:X(g),x2:X(g),y1:padT,y2:padT+ph,stroke:css('--grid')},s);
+    const a=el('text',{x:padL-10,y:Y(g)+4,'text-anchor':'end','font-size':10.5,fill:css('--muted')},s);
+    a.textContent=g.toFixed(2);
+    const b=el('text',{x:X(g),y:padT+ph+18,'text-anchor':'middle','font-size':10.5,fill:css('--muted')},s);
+    b.textContent=g.toFixed(2);
+  });
+  el('line',{x1:X(0),y1:Y(0),x2:X(max),y2:Y(max),stroke:css('--axis'),'stroke-dasharray':'4 4','stroke-width':1.5},s);
+  const dl = el('text',{x:X(0.86),y:Y(0.92),'font-size':10.5,fill:css('--muted')},s);
+  dl.textContent='signal = noise';
+  const ax=el('text',{x:padL+pw/2,y:H-12,'text-anchor':'middle','font-size':11.5,fill:css('--text-secondary')},s);
+  ax.textContent='Between-rater SD  →  noise';
+  const ay=el('text',{x:16,y:padT+ph/2,'font-size':11.5,fill:css('--text-secondary'),
+    transform:`rotate(-90 16 ${padT+ph/2})`,'text-anchor':'middle'},s);
+  ay.textContent='Between-video SD  →  signal';
+  const shortM = m => NAMES[m].replace(' Alignment','').replace('Learning Objective ','Objective ')
+      .replace('Multimedia Learning Design','Multimedia Design');
+  // group metrics that land on identical coordinates so one marker carries both names
+  const groups = [];
+  M.forEach(m=>{
+    const p = DATA.permetric[m];
+    const g = groups.find(g => g.x===p.within && g.y===p.between);
+    if (g) g.ms.push(m); else groups.push({x:p.within, y:p.between, ms:[m]});
+  });
+  groups.forEach(g=>{
+    const good = g.y > g.x;
+    const cx=X(g.x), cy=Y(g.y);
+    el('circle',{cx,cy,r:8.5,fill:css('--surface-1')},s);
+    const c = el('circle',{cx,cy,r:6.5,fill: good?css('--series-3'):css('--series-2'),
+      stroke:css('--surface-1'),'stroke-width':2},s);
+    bindTip(c, g.ms.map(m=>`<div class="tt-h">${NAMES[m]}</div>`).join('')+
+      `<div class="tt-r">between-video SD ${g.y.toFixed(2)} (signal)</div>`+
+      `<div class="tt-r">between-rater SD ${g.x.toFixed(2)} (noise)</div>`+
+      `<div class="tt-r">ratio ${(g.y/g.x).toFixed(2)}</div>`+
+      (g.ms.length>1?`<div class="tt-r" style="margin-top:3px">identical statistics</div>`:''));
+    g.cx=cx; g.cy=cy; g.right = g.x < 0.8;
+    g.labels = g.ms.map(shortM);
+  });
+  // nudge labels apart when markers on the same side sit within ~15px vertically
+  ['left','right'].forEach(side=>{
+    const col = groups.filter(g=>(g.right?'right':'left')===side).sort((a,b)=>a.cy-b.cy);
+    for (let i=1;i<col.length;i++){
+      const need = 8 + 15*col[i-1].labels.length;
+      if (col[i].ly===undefined) col[i].ly = col[i].cy;
+      const prev = col[i-1].ly ?? col[i-1].cy;
+      if (col[i].ly - prev < need) col[i].ly = prev + need;
+    }
+  });
+  groups.forEach(g=>{
+    const y0 = (g.ly ?? g.cy) - (g.labels.length-1)*7;
+    g.labels.forEach((lab,k)=>{
+      const ty = y0 + k*14 + 4;
+      const t = el('text',{x: g.cx + (g.right?13:-13), y: ty, 'text-anchor': g.right?'start':'end',
+        'font-size':11.5, fill:css('--text-primary')},s);
+      t.textContent = lab;
+    });
+    if (Math.abs((g.ly ?? g.cy) - g.cy) > 2)
+      el('line',{x1:g.cx+(g.right?8:-8), y1:g.cy, x2:g.cx+(g.right?12:-12), y2:(g.ly??g.cy),
+        stroke:css('--axis'),'stroke-width':1},s);
+  });
+  const lg=document.createElement('div'); lg.className='legend';
+  lg.innerHTML = `<span><i class="swatch" style="background:${css('--series-3')};border-radius:99px"></i>signal &gt; noise — usable</span>`+
+    `<span><i class="swatch" style="background:${css('--series-2')};border-radius:99px"></i>noise ≥ signal — cannot rank videos</span>`;
+  document.getElementById('chart-disc').appendChild(lg);
+})();
+
+/* ---------- 7. ceiling ---------- */
+(function(){
+  const rows = M.map(m=>({m, p:DATA.permetric[m].pct5, mean:DATA.permetric[m].mean}))
+                .sort((a,b)=>b.p-a.p);
+  const W=760,padL=200,padR=110,top=14,rowH=32,H=top+rows.length*rowH+30;
+  const s = svgRoot('chart-ceil', W, H);
+  const w=W-padL-padR;
+  [0,25,50,75].forEach(g=>{
+    el('line',{x1:padL+w*g/75,x2:padL+w*g/75,y1:top-4,y2:top+rows.length*rowH,stroke:css('--grid')},s);
+    const t=el('text',{x:padL+w*g/75,y:top+rows.length*rowH+16,'text-anchor':'middle','font-size':10.5,fill:css('--muted')},s);
+    t.textContent=g+'%';
+  });
+  rows.forEach((r,i)=>{
+    const y=top+i*rowH;
+    const lab=el('text',{x:padL-12,y:y+18,'text-anchor':'end','font-size':12.5,fill:css('--text-primary')},s);
+    lab.textContent=NAMES[r.m];
+    const bw = w*r.p/75;
+    const col = r.p>=50 ? css('--critical') : (r.p>=30 ? css('--series-2') : css('--series-1'));
+    const rect=el('rect',{x:padL,y:y+5,width:Math.max(bw,2),height:18,rx:3,fill:col},s);
+    bindTip(rect,`<div class="tt-h">${NAMES[r.m]}</div><div class="tt-r">${r.p}% of ratings were a 5</div><div class="tt-r">mean ${r.mean.toFixed(2)}</div>`);
+    const t=el('text',{x:padL+bw+8,y:y+18,'font-size':12,'font-weight':600,fill:css('--text-primary')},s);
+    t.textContent = r.p+'%';
+    const t2=el('text',{x:padL+bw+46,y:y+18,'font-size':11,fill:css('--muted')},s);
+    t2.textContent = 'mean '+r.mean.toFixed(2);
+  });
+})();
+
+/* ---------- 8. correlation matrix ---------- */
+(function(){
+  const cell=54, padL=196, padT=104;
+  const W=padL+M.length*cell+16, H=padT+M.length*cell+16;
+  const s = svgRoot('chart-corr', W, H);
+  const short = m => NAMES[m].replace(' Alignment','').replace('Learning Objective ','Obj. ')
+      .replace('Multimedia Learning Design','Multimedia').replace('Learning Adaptation','Adaptation')
+      .replace('Content Accuracy','Accuracy').replace('Visual Quality','Visual');
+  const col = r => {
+    const a = Math.min(Math.abs(r),1);
+    if (r >= 0) return `color-mix(in oklab, ${css('--series-1')} ${Math.round(a*88)}%, ${css('--neutral-mid')})`;
+    return `color-mix(in oklab, ${css('--critical')} ${Math.round(a*88)}%, ${css('--neutral-mid')})`;
+  };
+  M.forEach((m,j)=>{
+    const t=el('text',{x:padL+j*cell+cell/2, y:padT-12,'font-size':11,fill:css('--text-secondary'),
+      'text-anchor':'start', transform:`rotate(-45 ${padL+j*cell+cell/2} ${padT-12})`},s);
+    t.textContent=short(m);
+  });
+  M.forEach((a,i)=>{
+    const t=el('text',{x:padL-12,y:padT+i*cell+cell/2+4,'text-anchor':'end','font-size':11.5,fill:css('--text-primary')},s);
+    t.textContent=short(a);
+    M.forEach((b,j)=>{
+      const r = DATA.corr[a][b];
+      const x=padL+j*cell, y=padT+i*cell;
+      if (i===j){
+        el('rect',{x:x+2,y:y+2,width:cell-4,height:cell-4,rx:4,fill:css('--neutral-mid')},s);
+        return;
+      }
+      const rect=el('rect',{x:x+2,y:y+2,width:cell-4,height:cell-4,rx:4,fill:col(r)},s);
+      bindTip(rect,`<div class="tt-h">${NAMES[a]} ~ ${NAMES[b]}</div><div class="tt-r">r = ${r.toFixed(2)} (severity-centered, n=9)</div>`);
+      const strong = Math.abs(r) > 0.55;
+      const t=el('text',{x:x+cell/2,y:y+cell/2+4,'text-anchor':'middle','font-size':11.5,
+        'font-weight': Math.abs(r)>0.75?700:500,
+        fill: strong ? '#fff' : css('--text-secondary'),'font-variant-numeric':'tabular-nums'},s);
+      t.textContent = r.toFixed(2);
+    });
+  });
+  const lg=document.createElement('div'); lg.className='legend';
+  lg.innerHTML=`<span><i class="swatch" style="background:${css('--series-1')}"></i>positive — metrics move together (redundant)</span>`+
+    `<span><i class="swatch" style="background:${css('--neutral-mid')}"></i>near zero — independent</span>`+
+    `<span><i class="swatch" style="background:${css('--critical')}"></i>negative</span>`;
+  document.getElementById('chart-corr').appendChild(lg);
+})();
+
+/* ---------- 9. Spearman-Brown ---------- */
+(function(){
+  const W=760,H=340,padL=54,padR=140,padT=18,padB=48;
+  const s=svgRoot('chart-sb',W,H);
+  const pw=W-padL-padR, ph=H-padT-padB, kmax=14;
+  const X=k=>padL+pw*(k-1)/(kmax-1), Y=v=>padT+ph-ph*v;
+  [0,0.2,0.4,0.6,0.8,1.0].forEach(g=>{
+    const isT = g===0.8;
+    el('line',{x1:padL,x2:padL+pw,y1:Y(g),y2:Y(g),stroke:isT?css('--good'):css('--grid'),
+      'stroke-width':isT?1.5:1,'stroke-dasharray':isT?'4 3':''},s);
+    const t=el('text',{x:padL-10,y:Y(g)+4,'text-anchor':'end','font-size':10.5,
+      fill:isT?css('--good'):css('--muted')},s);
+    t.textContent=g.toFixed(1);
+  });
+  for(let k=1;k<=kmax;k+=1){
+    if(k%2===1||k===kmax){
+      const t=el('text',{x:X(k),y:padT+ph+18,'text-anchor':'middle','font-size':10.5,fill:css('--muted')},s);
+      t.textContent=k;
+    }
+  }
+  const ax=el('text',{x:padL+pw/2,y:H-8,'text-anchor':'middle','font-size':11.5,fill:css('--text-secondary')},s);
+  ax.textContent='Number of raters averaged (k)';
+  const scen=[
+    {r1:0.417,l:'After P0 fixes',c:css('--series-3'),n:'single-rater ICC 0.417'},
+    {r1:0.305,l:'Instrument as-is',c:css('--series-2'),n:'single-rater ICC 0.305'}
+  ];
+  scen.forEach(sc=>{
+    let d='';
+    for(let k=1;k<=kmax;k++){
+      const v=k*sc.r1/(1+(k-1)*sc.r1);
+      d += (k===1?'M':'L')+X(k)+' '+Y(v)+' ';
+    }
+    el('path',{d,fill:'none',stroke:sc.c,'stroke-width':2,'stroke-linejoin':'round'},s);
+    for(let k=1;k<=kmax;k++){
+      const v=k*sc.r1/(1+(k-1)*sc.r1);
+      el('circle',{cx:X(k),cy:Y(v),r:5,fill:css('--surface-1')},s);
+      const c=el('circle',{cx:X(k),cy:Y(v),r:3.5,fill:sc.c},s);
+      bindTip(c,`<div class="tt-h">${sc.l}</div><div class="tt-r">k = ${k} raters → reliability ${v.toFixed(3)}</div><div class="tt-r">${sc.n}</div>`);
+    }
+    const vEnd=kmax*sc.r1/(1+(kmax-1)*sc.r1);
+    const t=el('text',{x:X(kmax)+10,y:Y(vEnd)+4,'font-size':12,'font-weight':600,fill:sc.c},s);
+    t.textContent=sc.l;
+  });
+  // markers where each crosses 0.8
+  scen.forEach(sc=>{
+    let kk=null;
+    for(let k=1;k<=40;k++){ if(k*sc.r1/(1+(k-1)*sc.r1)>=0.8){kk=k;break;} }
+    if(kk&&kk<=kmax){
+      el('line',{x1:X(kk),x2:X(kk),y1:Y(0.8),y2:padT+ph,stroke:sc.c,'stroke-dasharray':'3 3'},s);
+      const t=el('text',{x:X(kk),y:padT+ph-8,'text-anchor':'middle','font-size':11,'font-weight':600,fill:sc.c},s);
+      t.textContent='k='+kk;
+    }
+  });
+  const t3=el('text',{x:padL+6,y:Y(0.8)-8,'font-size':10.5,fill:css('--good')},s);
+  t3.textContent='0.80 — usable for reporting';
+  const lg=document.createElement('div'); lg.className='legend';
+  lg.innerHTML=scen.map(sc=>`<span><i class="swatch" style="background:${sc.c}"></i>${sc.l} (${sc.n})</span>`).join('');
+  document.getElementById('chart-sb').appendChild(lg);
+})();
+
+/* ---------- appendix table ---------- */
+(function(){
+  const tb=document.getElementById('tbl-full');
+  const all=["qing_yue_chen","vshourie@asu.edu","huaiyuan_real","aarsh","hua_wei"];
+  M.forEach(m=>{
+    VIDS.forEach((v,vi)=>{
+      const g=DATA.grid5[m][v];
+      const core=RATERS.map(r=>g[r]);
+      const sp=Math.max(...core)-Math.min(...core);
+      const tr=document.createElement('tr');
+      tr.innerHTML = `<td>${vi===0?'<b>'+NAMES[m]+'</b>':''}</td><td>${v}</td>`+
+        all.map(r=>`<td class="num">${g[r]}</td>`).join('')+
+        `<td class="num" style="color:${sp>=2?css('--critical'):css('--text-secondary')}">${sp}</td>`;
+      tb.appendChild(tr);
+    });
+  });
+})();
+</script>
+</body>
+</html>

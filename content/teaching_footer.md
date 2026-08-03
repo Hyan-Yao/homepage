@@ -1,4 +1,4 @@
-### Mentorship & Collaboration
+### Collaboration
 
 I've had the privilege of collaborating with a wonderful group of brilliant undergraduate and master's students:
 
@@ -8,6 +8,7 @@ I've had the privilege of collaborating with a wonderful group of brilliant unde
 - **Ziqi Wang**: Master's, Computer Science, Rutgers University
 - **Siyuan Xing**: Undergraduate, Arizona State University
 - **Yuxuan Huang**: Master's, Arizona State University
-- **Xiwei Ni**: Master's, Xi'an Jiaotong University
+- **Aarshdeep Nandra**: Undergraduate, Arizona State University
+- **Susrik Mukherjee**: Undergraduate, Arizona State University
 
 **Research is NOT just about advancing your own work, it’s also about supporting and learning from one another along the way.** If you're interested in working together, feel free to reach out. Let's build something interesting!
