@@ -3,6 +3,14 @@ title = "Blog"
 description = "Write-ups on recent work from our group on multi-agent large language models, and read-throughs of papers we found worth the time."
 
 [[items]]
+title = "Qwen3.5-Omni: An Omni Model That Acts in Real Time"
+subtitle = "Paper read-through — streaming speech, 256k context, and a native omni agent"
+date = "2026"
+href = "/blog/qwen35-omni"
+content = "Most omni models are perception-response machines: hand them audio, get text back. Qwen3.5-Omni is built to act instead — calling tools mid-conversation and speaking while it thinks. The interesting engineering is what real time costs: ARIA fixes the clock mismatch between text and speech tokenizers, timestamps become plain text the model reads, and the answer you get by voice is distilled from the one you'd get in writing."
+tags = ["Paper Reading", "Multimodal", "Speech", "Agents", "Streaming"]
+
+[[items]]
 title = "Kimi K3: Scaling Both Axes at Once"
 subtitle = "Paper read-through — a 2.8T open MoE with a 1M-token context"
 date = "2026"

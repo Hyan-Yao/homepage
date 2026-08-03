@@ -31,7 +31,7 @@ We evaluated LangMARL across two kinds of environments — open-ended **language
 
 - **It wins across the board.** LangMARL takes the top score on every benchmark: MATH 56.0 (vs. 53.8 for the best baseline), HotPotQA 60.2, HumanEval 73.2, and the highest mean reward on all five Overcooked layouts.
 - **It scales where others collapse.** In Pistonball, as the team grows from 10 to 20 pistons, baselines like TextGrad degrade into negative returns; LangMARL holds stable positive reward (+22.9 at N=20 vs. +14.3). Per-agent credit is exactly what keeps coordination from falling apart as the team grows.
-- **Credit assignment is the active ingredient.** Strip it out — train every agent on the shared global reward — and convergence slows and destabilizes across all five tasks. The blue (with credit) curves consistently beat the green (without).
+- **Credit assignment is the active ingredient.** Strip it out — train every agent on the shared global reward — and convergence slows and destabilizes across all five tasks. The orange (with credit) curves consistently beat the blue (without).
 
 ![Learning curves across five tasks. With agent-specific credit assignment (orange), LangMARL converges faster and to higher final performance; without it (blue), learning is slower and less stable — most visibly on the reasoning and multi-agent coordination tasks.](/blog/langmarl/training-curve.png)
 

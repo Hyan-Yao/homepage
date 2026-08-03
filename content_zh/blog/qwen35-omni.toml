@@ -1,0 +1,3 @@
+type = "text"
+title = "Qwen3.5-Omni：一个会实时行动的全模态模型"
+source = "blog/qwen35-omni.md"
