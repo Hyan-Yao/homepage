@@ -3,7 +3,7 @@ title = "About"
 
 [profile]
 research_interests = [
-  "LLM Agents, MARL, Multi-Agents", "Continual Learning, Self-evolution, Memory", "Autonomous Driving, Robotics", "Computational Neuroscience"
+   "Continual Learning, Test-time Training, Memory", "LLM Agents, MARL, Multi-Agents", "Autonomous Driving, Robotics", "Computational Neuroscience"
 ]
 
 [[sections]]
