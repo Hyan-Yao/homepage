@@ -7,6 +7,9 @@
 
 ## Work
 
+**Research Intern**, [Honda Research Institute USA](https://usa.honda-ri.com/), Mountain View, CA, *May 2026 - Aug 2026*
+- Mentor: [Manish Saroya](https://scholar.google.com/citations?user=WNB4N6oAAAAJ&hl=en)
+
 **Research Assistant**, [Institute of AI Industry Research (AIR), Tsinghua University](https://air.tsinghua.edu.cn/en/)
 
 ## Teaching Assistant
