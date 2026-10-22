@@ -1,4 +1,12 @@
 [[news]]
+date = "2026-10"
+content = "Heading to **EMNLP 2026** in Budapest, Hungary 🇭🇺! I will present our papers *LangMARL*, *MASkills*, and *RULERS*, and I am glad to serve as a session chair for the **Ethics, Bias, and Fairness** track. See you there!"
+
+[[news]]
+date = "2026-10"
+content = "Glad to receive TPU support from the **Google TPU Research Cloud (TRC)** program!"
+
+[[news]]
 date = "2026-09"
 content = "Glad to receive **NSF ACCESS** support for our work on test-time training!"
 
