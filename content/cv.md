@@ -1,3 +1,5 @@
+[Download CV (PDF)](https://hyan-yao.github.io/homepage/Huaiyuan_Yao_CV.pdf)
+
 ## Education
 
 **Arizona State University**, PhD in Computer Science, *2025 - Present*
@@ -14,8 +16,14 @@
 
 ## Teaching Assistant
 
+- **CSE 598: Agentic AI**, Fall 2026.
 - **CSE 220: Programming for Computer Engr**, Spring 2026.
 - **CSE 475: Foundation of Machine Learning**, Fall 2025.
+
+## Grants
+
+- **Google TPU Research Cloud (TRC)** — TPU compute support, 2026
+- **NSF ACCESS allocation, Principal Investigator** — Test-time training for self-improving LLM agents, 2026
 
 ## Awards & Honors
 
@@ -25,7 +33,7 @@
 
 ## Academic Services
 
-- **Reviewer**: ICMLA 2026, PAKDD 2026, ECML-PKDD 2026, RLC 2026, IROS 2026
+- **Reviewer**: AAAI 2027 Student Abstract and Poster Program (PC), ICMLA 2026, PAKDD 2026, ECML-PKDD 2026, RLC 2026, IROS 2026
 - **Volunteer**: 4th China 3D Vision Conference (China3DV 2025)
 
 ## Community & Leadership

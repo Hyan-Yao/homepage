@@ -4,6 +4,11 @@ description = "Courses I have taught or assisted with."
 footer_source = "teaching_footer.md"
 
 [[items]]
+title = "CSE 598: Agentic AI"
+subtitle = "Teaching Assistant"
+date = "2026 Fall"
+
+[[items]]
 title = "CSE 220: Programming for Computer Engr"
 subtitle = "Teaching Assistant"
 date = "2026 Spring C"
