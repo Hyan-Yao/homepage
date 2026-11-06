@@ -1,17 +1,24 @@
 @misc{chen2026mave,
+  preview = {chen2026mave.png},
+  code = {https://github.com/Hyan-Yao/MAVE},
+  arxiv = {2610.24498},
   title = {MAVE: A Multi-Agent Framework for Grounded Pedagogical Feedback from Online Class Videos},
   author = {Qingyue Chen and Huaiyuan Yao and Wanpeng Xu and Varun Shourie and Qianwen Wang and Hua Wei*},
   year = {2026},
   month = oct,
-  arxiv = {2610.24498},
-  code = {https://github.com/DaRL-GenAI/MAVE},
   abstract = {},
   description = {Preprint},
   keywords = {LLM Agents, Education, Multi-Agent Systems, Pedagogical Feedback}
 }
 
-
-@article{yao2026maskills,
+@inproceedings{yao2026maskills,
+  preview = {yao2026maskills.png},
+  page = {https://darl-genai.github.io/LangMARL_homepage/},
+  code = {https://github.com/DaRL-GenAI/MASkills},
+  doi = {10.18653/2026.findings-emnlp.1453},
+  url = {https://aclanthology.org/2026.findings-emnlp.1453/},
+  arxiv = {2609.02094},
+  booktitle = {Findings of EMNLP},
   title = {MASkills: Continual Skills Optimization for Multi-Agent LLM Systems},
   author = {Huaiyuan Yao and Xiaoou Liu and Charles Fleming and Tianlong Chen and Hua Wei*},
   year = {2026},
@@ -21,21 +28,26 @@
   keywords = {Multi-Agent Systems, LLM, Skill Learning, Continual Learning}
 }
 
-
-@article{yao2026langmarl,
+@inproceedings{yao2026langmarl,
+  preview = {yao2026langmarl.png},
+  page = {https://darl-genai.github.io/LangMARL_homepage/},
+  code = {https://github.com/DaRL-GenAI/LangMARL},
+  doi = {10.18653/2026.emnlp-main.1837},
+  url = {https://aclanthology.org/2026.emnlp-main.1837/},
+  arxiv = {2604.00722},
+  booktitle = {EMNLP},
   selected={true},
   title = {LangMARL: Natural Language Multi-Agent Reinforcement Learning},
   author = {Huaiyuan Yao and Longchao Da and Xiaoou Liu and Charles Fleming and Tianlong Chen and Hua Wei*},
   year = {2026},
   month = mar,
-  arxiv = {2604.00722},
   abstract = {},
   description = {Accepted at EMNLP 2026},
   keywords = {Multi-Agent Reinforcement Learning, Natural Language, LLM}
 }
 
-
 @inproceedings{aurora2026iros,
+  preview = {aurora2026iros.png},
   title = {AURORA: Attention-Intended Dual Verification with Adaptive Rollback for Large Language Model Agents},
   booktitle = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   author = {Ziqi Wang and Huaiyuan Yao and Hua Wei and Hang Zhou and Xiao Luo},
@@ -47,21 +59,29 @@
 }
 
 @inproceedings{yao2026instructional,
+  preview = {yao2026instructional.png},
+  page = {https://darl-genai.github.io/instructional_agents_homepage/},
+  code = {https://github.com/DaRL-GenAI/instructional_agents},
+  doi = {10.18653/v1/2026.eacl-long.191},
+  url = {https://aclanthology.org/2026.eacl-long.191/},
+  arxiv = {2508.19611},
   selected={true},
-  title = {Instructional Agents: LLM Agents on Automated Course Material Generation for Teaching Faculties},
+  title = {Instructional Agents: Reducing Teaching Faculty Workload through Multi-Agent Instructional Design},
   booktitle = {Conference of the European Chapter of the Association for Computational Linguistics (EACL)},
   author = {Huaiyuan Yao and Wanpeng Xu and Justin Turnau and Nadia Kellam and Hua Wei*},
   year = {2026},
   month = jan,
-  page = {https://darl-genai.github.io/instructional_agents_homepage/},
   blog = {/blog/instructional-agents},
-  preview = {instructional_agents_framework.png},
   abstract = {},
   description = {Accepted at EACL 2026},
   keywords = {LLM Agents, Education, Course Material Generation}
 }
 
 @inproceedings{igo2026mooc,
+  preview = {igo2026mooc.png},
+  code = {https://github.com/DaRL-GenAI/Virtual_Instructor},
+  doi = {10.59668/2551.25409},
+  url = {https://lern.edtechbooks.org/lern_2026/xlqzauabyh},
   title = {From Course Concept to Lecture Video: An AI-Powered System for Automated MOOC Development},
   booktitle = {LERN 2026},
   author = {Jacob Igo and Huaiyuan Yao and Wanpeng Xu and Nadia Kellam and Hua Wei},
@@ -72,6 +92,11 @@
 }
 
 @inproceedings{chen-etal-2026-every,
+  preview = {chen-etal-2026-every.png},
+  code = {https://github.com/tiejin98/MATU},
+  doi = {10.18653/v1/2026.acl-long.737},
+  url = {https://aclanthology.org/2026.acl-long.737/},
+  arxiv = {2604.08708},
     title = "Every Response Counts: Quantifying Uncertainty of {LLM}-based Multi-Agent Systems through Tensor Decomposition",
     author = "Chen, Tiejin  and
       Yao, Huaiyuan  and
@@ -88,58 +113,132 @@
     description = {Accepted at ACL 2026},
     address = "San Diego, California, United States",
     publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2026.acl-long.737/",
-    doi = "10.18653/v1/2026.acl-long.737",
     pages = "16204--16218",
     ISBN = "979-8-89176-390-6",
     abstract = "While Large Language Model-based Multi-Agent Systems (MAS) consistently outperform single-agent systems on complex tasks, their intricate interactions introduce critical reliability challenges arising from communication dynamics and role dependencies. Existing Uncertainty Quantification methods, typically designed for single-turn outputs, fail to address the unique complexities of the MAS. Specifically, these methods struggle with three distinct challenges: the cascading uncertainty in multi-step reasoning, the variability of inter-agent communication paths, and the diversity of communication topologies. To bridge this gap, we introduce MATU, a novel framework that quantifies uncertainty through tensor decomposition. MATU moves beyond analyzing final text outputs by representing entire reasoning trajectories as embedding matrices and organizing multiple execution runs into a higher-order tensor. By applying tensor decomposition, we disentangle and quantify distinct sources of uncertainty, offering a comprehensive reliability measure that is generalizable across different agent structures. We provide comprehensive experiments to show that MATU effectively estimates holistic and robust uncertainty across diverse tasks and communication topologies."
 }
 
 @inproceedings{yao2025comal,
+  preview = {yao2025comal.png},
+  code = {https://github.com/Hyan-Yao/CoMAL},
+  doi = {10.1137/1.9781611978520.43},
+  url = {https://epubs.siam.org/doi/10.1137/1.9781611978520.43},
+  arxiv = {2410.14368},
   selected={true},
   title = {CoMAL: Collaborative Multi-Agent Large Language Models for Mixed-Autonomy Traffic},
   booktitle = {CIKM 2024 Workshop, SDM 2025},
   author = {Huaiyuan Yao and Longchao Da and Vishnu Nandam and Justin Turnau and Zhiwei Liu and Linsey Pang and Hua Wei*},
   year = {2025},
-  doi = {10.1137/1.9781611978520.43},
-  url = {https://epubs.siam.org/doi/10.1137/1.9781611978520.43},
-  code = {https://github.com/Hyan-Yao/CoMAL},
   blog = {/blog/comal},
-  preview = {comal_pipeline.png},
   abstract = {},
-  description = {Accepted at SDM 2025},
+  description = {Accepted at SDM 2025, Best Poster},
   keywords = {Multi-Agent Systems, LLM, Autonomous Driving, Traffic}
 }
 
-@article{hong2025rulers,
+@inproceedings{hong2025rulers,
+  preview = {hong2025rulers.png},
+  code = {https://github.com/LabRAI/Rulers},
+  doi = {10.18653/2026.emnlp-main.566},
+  url = {https://aclanthology.org/2026.emnlp-main.566/},
+  arxiv = {2601.08654},
+  booktitle = {EMNLP},
   title = {RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation},
   author = {Yihan Hong and Huaiyuan Yao and Bolin Shen and Wanpeng Xu and Hua Wei and Yushun Dong*},
   year = {2026},
   month = jan,
-  arxiv = {2601.08654},
   abstract = {},
   description = {Accepted at EMNLP 2026},
   keywords = {LLM Evaluation, Rubrics, NLP}
 }
 
-@article{yao2025lilodriver,
+@misc{yao2025lilodriver,
+  preview = {yao2025lilodriver.png},
+  code = {https://github.com/Hyan-Yao/LiloDriver},
+  arxiv = {2505.17209},
   title = {LiloDriver: A Lifelong Learning Framework for Closed-loop Motion Planning in Long-tail Autonomous Driving Scenarios},
   author = {Huaiyuan Yao and Pengfei Li and Bu Jin and Yupeng Zheng and An Liu and Lisen Mu and Qing Su and Qian Zhang and Yilun Chen and Peng Li*},
   year = {2025},
   month = may,
-  arxiv = {2505.17209},
   abstract = {},
   description = {Preprint},
   keywords = {Autonomous Driving, Lifelong Learning, Motion Planning}
 }
 
-@article{da2025genai,
+@misc{da2025genai,
+  preview = {da2025genai.png},
+  arxiv = {2503.07158},
   title = {Generative AI in Transportation Planning: A Survey},
   author = {Longchao Da and Tiejin Chen and Zhuoheng Li and Shreyas Bachiraju and Huaiyuan Yao and Li Li and Yushun Dong and Xiyang Hu and Zhengzhong Tu and Dongjie Wang and Yue Zhao and Ben Zhou and Ram Pendyala and Benjamin Stabler and Yezhou Yang and Xuesong Zhou and Hua Wei},
   year = {2025},
   month = mar,
-  arxiv = {2503.07158},
   abstract = {},
   description = {Preprint},
   keywords = {Generative AI, Transportation Planning, Survey}
+}
+
+@inproceedings{yao2025rarecell,
+  title = {How Effective is In-Context Learning with Large Language Models for Rare Cell Identification in Single-Cell Expression Data?},
+  author = {Huaiyuan Yao and Zhenxiao Cao and Zhongman Wang and Xiewei Ni and Jinyan Dong and Hongyi Cai and Yuqiang Han and Xiao Luo},
+  year = {2025},
+  booktitle = {IEEE International Conference on Data Mining (ICDM)},
+  url = {https://ieeexplore.ieee.org/abstract/document/11391808},
+  doi = {10.1109/ICDM65498.2025.00179},
+  code = {https://github.com/Hyan-Yao/InContextCells},
+  abstract = {},
+  description = {Accepted at IEEE ICDM 2025}
+}
+
+@inproceedings{chen2026steering,
+  title = {Steering Vectors as a Training Signal in LLM Post-Training},
+  author = {Tiejin Chen and Maunil Rohitbhai Vyas and Huaiyuan Yao and Hua Wei},
+  year = {2026},
+  month = oct,
+  booktitle = {Conference on Neural Information Processing Systems (NeurIPS)},
+  arxiv = {2610.40998},
+  url = {https://neurips.cc/virtual/2026/poster/150277},
+  code = {https://github.com/tiejin98/sv_training},
+  preview = {chen2026steering.png},
+  abstract = {},
+  description = {Accepted at NeurIPS 2026}
+}
+
+@misc{yao2027harnessdriver,
+  title = {HarnessDriver: Steering Deterministic Driving Planners toward Adaptive Closed-Loop Behavior},
+  author = {Huaiyuan Yao and David Isele and Sangjae Bae and Hua Wei and Manish Saroya},
+  year = {2026},
+  abstract = {},
+  description = {Under review at ICRA 2027}
+}
+
+@misc{zhao2025fuas,
+  title = {Autonomous Multi-Modal LLM Agents for Treatment Planning in Focused Ultrasound Ablation Surgery},
+  author = {Lina Zhao and Zihao Bian and Qingyue Chen and Yafang Li and Zhiyi Luo and Jiaxing Bai and Guangbo Li and Min He and Kezhi Li and Huaiyuan Yao* and Zongjiu Zhang},
+  year = {2025},
+  month = may,
+  arxiv = {2505.21418},
+  code = {https://github.com/Hyan-Yao/FUAS-Agents},
+  preview = {zhao2025fuas.png},
+  abstract = {},
+  description = {Under review at IEEE JBHI}
+}
+
+@misc{rafi2026sim2signal,
+  title = {Sim2Signal: Sim-to-Real Benchmarks for Traffic Signal Control},
+  author = {Ferdous Al Rafi and Susrik Mukherjee and Latika Liladhar Dekate and Jennifer Yawa Lavoe and Huaiyuan Yao and Shlok Mohanty and Longchao Da and Xuesong Zhou and Hua Wei},
+  year = {2026},
+  month = sep,
+  arxiv = {2609.01676},
+  code = {https://github.com/DaRL-LibSignal/Sim2Signal},
+  page = {https://darl-libsignal.github.io/Sim2SignalWebsite/},
+  preview = {rafi2026sim2signal.png},
+  abstract = {},
+  description = {Under review at AAAI 2027}
+}
+
+@misc{li2026lifelineqa,
+  title = {LifelineQA: An Evidence-Grounded Benchmark for Situational-Awareness Question Answering in Emergency Operations},
+  author = {Wenwen Li and Pingping Wang and Yuanyuan Tian and Sizhe Wang and Huaiyuan Yao and Longchao Da and Al Mehdi Saadat Chowdhury and Mahdi Ahmadi and Yi-Wen Mo and Ferdous Al Rafi and Hua Wei and YooJung Choi and Paulo Shakarian},
+  year = {2026},
+  abstract = {},
+  description = {Under review at ICLR 2027}
 }
