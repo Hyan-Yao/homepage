@@ -26,6 +26,7 @@ function withBasePath(src: string): string {
 const linkChipClass =
     'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors';
 import { Publication } from '@/types/publication';
+import PublicationTitle from '@/components/publications/PublicationTitle';
 import { PublicationPageConfig } from '@/types/page';
 import { cn } from '@/lib/utils';
 import { useMessages } from '@/lib/i18n/useMessages';
@@ -215,7 +216,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                             <div className="flex flex-col md:flex-row gap-6">
                                 <div className="flex-grow order-2 md:order-1 min-w-0">
                                     <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-2 leading-tight`}>
-                                        {pub.title}
+                                        <PublicationTitle pub={pub} />
                                     </h3>
                                     <p className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-400 mb-2`}>
                                         {pub.authors.map((author, idx) => (

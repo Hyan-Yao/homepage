@@ -44,7 +44,7 @@ content = "Glad to receive University Graduate Fellowship (UGF) for Spring 2026!
 
 [[news]]
 date = "2026-01"
-content = "New paper released: *RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation*."
+content = "New paper released: *From Rubrics to Reliable Scores: Evidence-Grounded Text Evaluation with LLM Judges*."
 
 [[news]]
 date = "2025-12"

@@ -28,25 +28,25 @@ Research interest: AI agents that keep learning from their own experience after 
 
 ### Peer-reviewed conference papers
 
-1. **Huaiyuan Yao**, Longchao Da, Xiaoou Liu, Charles Fleming, Tianlong Chen, Hua Wei. [*LangMARL: Natural Language Multi-Agent Reinforcement Learning.*](https://arxiv.org/pdf/2604.00722) EMNLP 2026 (Main).
+1. **Huaiyuan Yao**, Longchao Da, Xiaoou Liu, Charles Fleming, Tianlong Chen, Hua Wei. [*LangMARL: Natural Language Multi-Agent Reinforcement Learning via Semantic Credit Assignment.*](https://arxiv.org/pdf/2604.00722) EMNLP 2026 (Main).
 2. **Huaiyuan Yao**, Xiaoou Liu, Charles Fleming, Tianlong Chen, Hua Wei. [*MASkills: Continual Skills Optimization for Multi-Agent LLM Systems.*](https://arxiv.org/abs/2609.02094) Findings of EMNLP 2026.
 3. **Huaiyuan Yao**, Wanpeng Xu, Justin Turnau, Nadia Kellam, Hua Wei. [*Instructional Agents: Reducing Teaching Faculty Workload through Multi-Agent Instructional Design.*](https://aclanthology.org/2026.eacl-long.191/) EACL 2026. GitHub: 500 stars.
-4. **Huaiyuan Yao**, Zhenxiao Cao, Zhongman Wang, Hongyi Cai, Yuqiang Han, Xiao Luo. [*How Effective is In-Context Learning with Large Language Models for Rare Cell Identification in Single-Cell Expression Data?*](https://ieeexplore.ieee.org/abstract/document/11391808) IEEE ICDM 2025.
+4. **Huaiyuan Yao**, Zhenxiao Cao, Zhongman Wang, Xiewei Ni, Jinyan Dong, Hongyi Cai, Yuqiang Han, Xiao Luo. [*How Effective is In-Context Learning with Large Language Models for Rare Cell Identification in Single-Cell Expression Data?*](https://ieeexplore.ieee.org/abstract/document/11391808) IEEE ICDM 2025.
 5. **Huaiyuan Yao**, Longchao Da, Vishnu Nandam, Justin Turnau, Zhiwei Liu, Linsey Pang, Hua Wei. [*CoMAL: Collaborative Multi-Agent Large Language Models for Mixed-Autonomy Traffic.*](https://epubs.siam.org/doi/10.1137/1.9781611978520.43) SDM 2025, **Best Poster**.
 6. Tiejin Chen, Maunil Rohitbhai Vyas, **Huaiyuan Yao**, Hua Wei. *Steering Vectors as a Training Signal in LLM Post-Training.* NeurIPS 2026.
 7. Tiejin Chen, **Huaiyuan Yao**, Jia Chen, Evangelos E. Papalexakis, Hua Wei. [*Every Response Counts: Quantifying Uncertainty of LLM-based Multi-Agent Systems through Tensor Decomposition.*](https://aclanthology.org/2026.acl-long.737/) ACL 2026.
-8. Yihan Hong, **Huaiyuan Yao**, Bolin Shen, Wanpeng Xu, Hua Wei, Yushun Dong. [*RULERS: Locked Rubrics and Evidence-Anchored Scoring for Robust LLM Evaluation.*](https://arxiv.org/abs/2601.08654) EMNLP 2026 (Main).
+8. Yihan Hong, **Huaiyuan Yao**, Bolin Shen, Wanpeng Xu, Hua Wei, Yushun Dong. [*From Rubrics to Reliable Scores: Evidence-Grounded Text Evaluation with LLM Judges.*](https://arxiv.org/abs/2601.08654) EMNLP 2026 (Main).
 9. Ziqi Wang, **Huaiyuan Yao**, Hua Wei, Hang Zhou, Xiao Luo. *AURORA: Attention-Intended Dual Verification with Adaptive Rollback for LLM Agents.* IROS 2026.
 10. Jacob Igo, **Huaiyuan Yao**, Wanpeng Xu, Nadia Kellam, Hua Wei. *From Course Concept to Lecture Video: An AI-Powered System for Automated MOOC Development.* LERN 2026.
 
-### Preprints and papers under review
+### Preprints and manuscripts
 
-11. **Huaiyuan Yao**, David Isele, Sangjae Bae, Hua Wei, Manish Saroya. *HarnessDriver: Steering Deterministic Driving Planners toward Adaptive Closed-Loop Behavior.* Under review at ICRA 2027.
+11. **Huaiyuan Yao**, David Isele, Sangjae Bae, Hua Wei, Manish Saroya. *HarnessDriver: Steering Deterministic Driving Planners toward Adaptive Closed-Loop Behavior.*
 12. **Huaiyuan Yao**, Pengfei Li, Bu Jin, Yupeng Zheng, An Liu, Lisen Mu, Qing Su, Qian Zhang, Yilun Chen, Peng Li. [*LiloDriver: A Lifelong Learning Framework for Closed-Loop Motion Planning in Long-Tail Autonomous Driving Scenarios.*](https://arxiv.org/abs/2505.17209) arXiv:2505.17209, 2025.
 13. Longchao Da, Tiejin Chen, Zhuoheng Li, Shreyas Bachiraju, **Huaiyuan Yao**, Li Li, Yushun Dong, Xiyang Hu, Zhengzhong Tu, Dongjie Wang, Yue Zhao, Ben Zhou, Ram Pendyala, Benjamin Stabler, Yezhou Yang, Xuesong Zhou, Hua Wei. *Generative AI in Transportation Planning: A Survey.* arXiv:2503.07158, 2025.
-14. Lina Zhao, Jiaxing Bai, Zihao Bian, Qingyue Chen, Yafang Li, Guangbo Li, Min He, **Huaiyuan Yao**†, Zongjiu Zhang. [*Autonomous Multi-Modal LLM Agents for Treatment Planning in Focused Ultrasound Ablation Surgery.*](https://arxiv.org/abs/2505.21418) Under review at IEEE JBHI. († corresponding author)
-15. Ferdous Al Rafi, Susrik Mukherjee, Latika Liladhar Dekate, Jennifer Yawa Lavoe, **Huaiyuan Yao**, Shlok Mohanty, Longchao Da, Xuesong Zhou, Hua Wei. [*Sim2Signal: Sim-to-Real Benchmarks for Traffic Signal Control.*](https://arxiv.org/abs/2609.01676) Under review at AAAI 2027.
-16. Wenwen Li, Pingping Wang, Yuanyuan Tian, Sizhe Wang, **Huaiyuan Yao**, Longchao Da, Al Mehdi Saadat Chowdhury, Mahdi Ahmadi, Yi-Wen Mo, Ferdous Al Rafi, Hua Wei, YooJung Choi, Paulo Shakarian. *LifelineQA: An Evidence-Grounded Benchmark for Situational-Awareness Question Answering in Emergency Operations.* Under review at ICLR 2027.
+14. Lina Zhao, Zihao Bian, Qingyue Chen, Yafang Li, Zhiyi Luo, Jiaxing Bai, Guangbo Li, Min He, Kezhi Li, **Huaiyuan Yao**†, Zongjiu Zhang. [*Autonomous Multi-Modal LLM Agents for Treatment Planning in Focused Ultrasound Ablation Surgery.*](https://arxiv.org/abs/2505.21418) arXiv:2505.21418, 2025. († corresponding author)
+15. Ferdous Al Rafi, Susrik Mukherjee, Latika Liladhar Dekate, Jennifer Yawa Lavoe, **Huaiyuan Yao**, Shlok Mohanty, Longchao Da, Xuesong Zhou, Hua Wei. [*Sim2Signal: Sim-to-Real Benchmarks for Traffic Signal Control.*](https://arxiv.org/abs/2609.01676) arXiv:2609.01676, 2026.
+16. Wenwen Li, Pingping Wang, Yuanyuan Tian, Sizhe Wang, **Huaiyuan Yao**, Longchao Da, Al Mehdi Saadat Chowdhury, Mahdi Ahmadi, Yi-Wen Mo, Ferdous Al Rafi, Hua Wei, YooJung Choi, Paulo Shakarian. *LifelineQA: An Evidence-Grounded Benchmark for Situational-Awareness Question Answering in Emergency Operations.*
 17. Qingyue Chen, **Huaiyuan Yao**, Wanpeng Xu, Varun Shourie, Qianwen Wang, Hua Wei. [*MAVE: A Multi-Agent Framework for Grounded Pedagogical Feedback from Online Class Videos.*](https://arxiv.org/abs/2610.24498) arXiv:2610.24498, 2026.
 
 ## Grants, Fellowships, and Honors
