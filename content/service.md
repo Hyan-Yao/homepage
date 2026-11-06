@@ -1,0 +1,7 @@
+- **Session Chair**, Ethics, Bias, and Fairness track, EMNLP 2026
+- **Volunteer**, 4th China 3D Vision Conference (China3DV 2025), Apr 2025
+- **Founder**, Neural Modeling and Programming Workshop, Feb 2024 – Aug 2024. A student-run computational neuroscience workshop with hundreds of participants.
+- **Founder**, Lanmily Language Community, 2023 – 2025. A student-led community of international and Chinese students.
+- **Producer**, Original Campus Musical *White Sail Literature Society*, 2023 – 2025
+- **Photographer**, Student TV, Xi'an Jiaotong University, 2021 – 2022
+- **First Aid Volunteer**, Red Cross Society of Xi'an, 2021 – 2022

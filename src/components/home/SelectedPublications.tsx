@@ -47,7 +47,9 @@ export default function SelectedPublications({ publications, title, enableOnePag
                             {pub.authors.map((author, idx) => (
                                 <span key={idx}>
                                     <span className={`${author.isHighlighted ? 'font-semibold text-accent' : ''} ${author.isCoAuthor ? `underline underline-offset-4 ${author.isHighlighted ? 'decoration-accent' : 'decoration-neutral-400'}` : ''}`}>
-                                        {author.name}
+                                        {author.url ? (
+                                            <a href={author.url} target="_blank" rel="noopener noreferrer" className="hover:text-accent hover:underline underline-offset-2 transition-colors">{author.name}</a>
+                                        ) : author.name}
                                     </span>
                                     {author.isCorresponding && (
                                         <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>†</sup>

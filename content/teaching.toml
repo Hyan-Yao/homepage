@@ -1,7 +1,9 @@
 type = "card"
-title = "Teaching"
+title = "Teaching & Service"
 description = "Courses I have taught or assisted with."
 footer_source = "teaching_footer.md"
+service_source = "service.md"
+service_reviewer = ["AAAI 2027 SA", "ECML-PKDD 2026", "RLC 2026", "IROS 2026", "ACML 2026", "WSDM 2026", "EWRL 2026", "CIKM 2026", "RV 2026", "ICMLA 2026", "PAKDD 2026"]
 
 [[items]]
 title = "CSE 598: Agentic AI"

@@ -1,6 +1,7 @@
 import { Publication, PublicationType, ResearchArea } from '@/types/publication';
 import { getConfig } from './config';
 import { getRuntimeI18nConfig } from './i18n/config';
+import { getTomlContent } from './content';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const bibtexParse = require('bibtex-parse-js');
@@ -38,12 +39,15 @@ const monthMapping: Record<string, number> = {
 export function parseBibTeX(bibtexContent: string, locale?: string): Publication[] {
   const highlightNames = getHighlightNames(locale);
   const entries = bibtexParse.toJSON(bibtexContent);
+  const authorUrls = getTomlContent<{ authors?: Record<string, string> }>('coauthors.toml')?.authors || {};
 
   return entries.map((entry: { entryType: string; citationKey: string; entryTags: Record<string, string> }, index: number) => {
     const tags = entry.entryTags;
 
     // Parse authors
-    const authors = parseAuthors(tags.author || '', highlightNames);
+    const authors = parseAuthors(tags.author || '', highlightNames).map((author) =>
+      authorUrls[author.name] ? { ...author, url: authorUrls[author.name] } : author
+    );
 
     // Parse year and month
     const year = parseInt(tags.year) || new Date().getFullYear();

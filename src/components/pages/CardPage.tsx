@@ -123,6 +123,34 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                     </ReactMarkdown>
                 </motion.div>
             )}
+
+            {(config.service_reviewer?.length || config.service) && (
+                <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 }}
+                    className={`${embedded ? "mt-6 text-sm" : "mt-10 text-base"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}
+                >
+                    <h2 className="text-2xl font-serif font-semibold text-primary mb-4">Service</h2>
+                    {config.service_reviewer && config.service_reviewer.length > 0 && (
+                        <div className="mb-5">
+                            <h3 className="font-semibold text-primary mb-2">Reviewer</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {config.service_reviewer.map((venue) => (
+                                    <span key={venue} className="text-sm text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700">
+                                        {venue}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {config.service && (
+                        <ReactMarkdown components={markdownComponents}>
+                            {config.service}
+                        </ReactMarkdown>
+                    )}
+                </motion.section>
+            )}
         </motion.div>
     );
 }

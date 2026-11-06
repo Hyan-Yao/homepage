@@ -45,6 +45,9 @@ function loadDynamicPageData(slug: string, locale?: string): DynamicPageLocaleDa
     if (cardConfig.footer_source) {
       cardConfig.footer = getMarkdownContent(cardConfig.footer_source, locale);
     }
+    if (cardConfig.service_source) {
+      cardConfig.service = getMarkdownContent(cardConfig.service_source, locale);
+    }
     return {
       type: 'card',
       config: cardConfig,

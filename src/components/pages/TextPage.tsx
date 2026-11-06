@@ -41,7 +41,7 @@ export default function TextPage({ config, content, embedded = false }: TextPage
                         h3: ({ children }) => <h3 className="text-xl font-semibold text-primary mt-6 mb-3">{children}</h3>,
                         p: ({ children }) => <p className="mb-4 last:mb-0">{children}</p>,
                         ul: ({ children }) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4">{children}</ul>,
-                        ol: ({ children }) => <ol className="list-decimal list-inside mb-4 space-y-1 ml-4">{children}</ol>,
+                        ol: ({ children, start }) => <ol start={start} className="list-decimal list-inside mb-4 space-y-1 ml-4">{children}</ol>,
                         li: ({ children }) => <li className="mb-1">{children}</li>,
                         a: ({ href, ...props }) => {
                             const isInternal = typeof href === 'string' && href.startsWith('/');

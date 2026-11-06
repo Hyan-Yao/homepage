@@ -32,4 +32,8 @@ export interface CardPageConfig extends BasePageConfig {
     items: CardItem[];
     footer_source?: string;
     footer?: string;
+    // Optional "Service" block rendered below the footer: reviewer tags, then a markdown list.
+    service_reviewer?: string[];
+    service_source?: string;
+    service?: string;
 }

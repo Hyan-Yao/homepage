@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
+    DocumentTextIcon,
     EnvelopeIcon,
     AcademicCapIcon,
     HeartIcon,
@@ -134,6 +135,15 @@ export default function Profile({ author, social, features, researchInterests }:
                 <p className="text-neutral-600 mb-2">
                     {author.institution}
                 </p>
+                <a
+                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/cv.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-2 px-4 py-1.5 rounded-md bg-accent hover:bg-accent-dark text-white text-sm font-medium transition-colors duration-200"
+                >
+                    <DocumentTextIcon className="h-4 w-4" />
+                    cv.pdf
+                </a>
             </div>
 
             {/* Contact Links */}
