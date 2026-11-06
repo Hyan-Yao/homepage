@@ -64,5 +64,5 @@ Research interest: AI agents that keep learning from their own experience after 
 - **Reviewer:** AAAI 2027 Student Abstract and Poster Program (PC), ECML-PKDD 2026, RLC 2026, IROS 2026, ACML 2026, WSDM 2026, EWRL 2026, CIKM 2026, RV 2026, ICMLA 2026, PAKDD 2026.
 - **Community:** Volunteer, China3DV 2025; Founder, Neural Modeling and Programming Workshop (2024), a student-run computational neuroscience workshop with hundreds of participants.
 - **Teaching Assistant, ASU:** CSE 598 Agentic AI (Fall 2026); CSE 475 Foundations of Machine Learning (Fall 2025), with Prof. Robert K. Atkinson; CSE 220 Programming for Computer Engineering (Spring 2026), with Prof. Adwith Malpe.
-- **Mentoring:** undergraduate and master's students Jacob Igo, Siyuan Xing, Aarshdeep Nandra, Yuxuan Huang, Rayan Kazi (ASU), Ziqi Wang (Rutgers), Iris Hong (WashU), Qingyue Chen (Wuhan University).
+- **Mentoring:** undergraduate and master's students Jacob Igo, Siyuan Xing, Aarshdeep Nandra, Yuxuan Huang, Rayan Kazi, Qingyue Chen (ASU), Ziqi Wang (Rutgers), Iris Hong (WashU).
 - **Open source:** Instructional Agents (500 GitHub stars), CoMAL, LiloDriver, LangMARL, MASkills.
