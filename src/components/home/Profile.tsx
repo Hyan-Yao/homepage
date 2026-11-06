@@ -142,7 +142,7 @@ export default function Profile({ author, social, features, researchInterests }:
                     className="inline-flex items-center gap-1.5 mt-2 px-4 py-1.5 rounded-md bg-accent hover:bg-accent-dark text-white text-sm font-medium transition-colors duration-200"
                 >
                     <DocumentTextIcon className="h-4 w-4" />
-                    cv.pdf
+                    CV (PDF)
                 </a>
             </div>
 

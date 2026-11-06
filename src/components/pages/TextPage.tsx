@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import { TextPageConfig } from '@/types/page';
 
 // Prefix root-absolute asset paths with the deployment base path (e.g. "/homepage"),
@@ -32,6 +33,17 @@ export default function TextPage({ config, content, embedded = false }: TextPage
                 <p className={`${embedded ? "text-base" : "text-lg"} text-neutral-600 dark:text-neutral-500 mb-8 max-w-2xl`}>
                     {config.description}
                 </p>
+            )}
+            {config.pdf && (
+                <a
+                    href={withBasePath(config.pdf)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mb-6 px-4 py-1.5 rounded-md bg-accent hover:bg-accent-dark text-white text-sm font-medium transition-colors duration-200"
+                >
+                    <DocumentTextIcon className="h-4 w-4" />
+                    CV (PDF)
+                </a>
             )}
             <div className="text-neutral-700 dark:text-neutral-600 leading-relaxed">
                 <ReactMarkdown

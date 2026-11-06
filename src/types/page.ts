@@ -12,6 +12,8 @@ export interface PublicationPageConfig extends BasePageConfig {
 export interface TextPageConfig extends BasePageConfig {
     type: 'text';
     source: string;
+    // Optional PDF version of the page, shown as a button under the title.
+    pdf?: string;
 }
 
 export interface CardItem {
