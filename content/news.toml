@@ -1,4 +1,8 @@
 [[news]]
+date = "2026-11"
+content = "Two pieces of good news from **AAAI-27**: our demo *EduCAST: A Multi-Agent System for Personalized Educational Video Generation with Closed-Loop Review* has been accepted by the **Demonstration Track**, and I have been accepted to the **SIGAI Doctoral Consortium** with my thesis proposal *Continual Learning from Experience for Real-World LLM Agents: From Workflows to Context to Weights*. See you in Montréal, Canada 🇨🇦 in February 2027! 🎉"
+
+[[news]]
 date = "2026-10"
 content = "Heading to **EMNLP 2026** in Budapest, Hungary 🇭🇺! I will present our papers *LangMARL*, *MASkills*, and *RULERS*, and I am glad to serve as a session chair for the **Ethics, Bias, and Fairness** track. See you there!"
 
