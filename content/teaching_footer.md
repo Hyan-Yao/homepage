@@ -4,7 +4,7 @@ I've had the privilege of collaborating with a wonderful group of brilliant unde
 
 - **Jacob Igo**: Undergraduate, Computer Science, Arizona State University · [*From Course Concept to Lecture Video*](https://lern.edtechbooks.org/lern_2026/xlqzauabyh) (**LERN 2026**)
 - **Iris Hong**: Master's, Washington University in St. Louis · [*RULERS*](https://aclanthology.org/2026.emnlp-main.566/) (**EMNLP 2026**)
-- **Qingyue Chen**: Undergraduate, Arizona State University · *EduCAST* (**AAAI-27 Demo**)
+- **Qingyue Chen**: Undergraduate, Arizona State University · *EduCAST* (**AAAI-27 Demo**) · [*MAVE*](https://arxiv.org/abs/2610.24498) (**Preprint**)
 - **Ziqi Wang**: Master's, Computer Science, Rutgers University · *AURORA* (**IROS 2026**)
 - **Siyuan Xing**: Undergraduate, Arizona State University
 - **Yuxuan Huang**: Master's, Arizona State University
